@@ -17,7 +17,7 @@
 
 \section{Chapter 3: Excercise A1}
 
-Suppose $*$ is defined on $\mathbb{R}$ as $a * b = a + b + k$ for any $a,b \in \reals$ for some $k \in \reals$.
+Suppose $*$ is defined on $\reals$ as $a * b = a + b + k$ for any $a,b \in \reals$ for some $k \in \reals$.
 
 \begin{thm}
 	$\langle \reals, * \rangle$ is a group.
@@ -30,6 +30,42 @@ Suppose $*$ is defined on $\mathbb{R}$ as $a * b = a + b + k$ for any $a,b \in \
 	We also have $a * -k = a + (-k) + k = -k + a + k = -k * a = a$, so $-k$ is the identity for the real numbers under $*$
 	Finally, consider the quantity $-(2k+a)$. Since we have $a * -(2k+a) = a + (-2k) +  (-a) + k = -(2k+a) * a = -k$, that quantity is the inverse of any $a$.
 	Since $*$ is closed under the real numbers and $*$ is associative and $-k$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $-(2k-a)$, $\langle \reals, * \rangle$ is a group.
+\end{proof}
+
+\section{Chapter 3: Excercise A3}
+
+Suppose $*$ is defined on $\reals$ as $a * b = a + b ab$ for any $a,b \in \reals$.
+
+\begin{thm}
+	$\langle \reals, * \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+	Let $a,b,$ and $c$ be some arbitrary real numbers.
+	Because $a * b = a + b + ab \in \reals$, we have that the real numbers are closed under $*$.
+	Then, observe that $a * (b * c)  = a * (b + c + bc) = a + b + c + ab + ac + bc + abc = (a + b + ab) * c = (a * b) * c$, so $*$ is associative.
+	We also have $a * 0 = a + (0) + 0a = 0 * a = a$, so $0$ is the identity for the real numbers under $*$
+	Finally, consider the quantity $\frac{-a}{1+a}$.
+	Since we have $a * \frac{-a}{1+a} = a + \frac{-a}{1+a} +  \frac{-a^2}{1+a} = \frac{-a}{1 + a} * a = \frac{a^2+a}{1+a} + \frac{-a}{1+a} + \frac{-a^2}{1+a} = 0$, that quantity is the inverse of any $a$.
+	Since $*$ is closed under the real numbers and $*$ is associative and $0$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $\frac{-a}{1+a}$, $\langle \reals, * \rangle$ is a group.
+\end{proof}
+
+\section{Chapter 3: Excercise B1}
+
+Suppose $*$ is defined on $\reals \times \reals$ as $(a,b) * (c,d) = (ad+bc,bd)$ for any $(a,b),(c,d) \in \reals \times \reals$.
+
+\begin{thm}
+	$\langle \reals, * \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+	Let $(a,b),(c,d),(e,f) \in \reals \times \reals$.
+	Consider that $(a,b) * (c,d) = (ad+bc,bd) \in \reals \times \reals$ since $ad+bc \in \reals \land bc \in \reals$. Then, $\reals \times \reals$ is closed under $*$
+	Now observe the following equivalence: $\Big((a,b) * (c,d)\Big) * (e,f) = (ad+bc,bd) * (e,f) = (adf+bcf+bde,bdf) = (a,b) * (cf+de,df) = (a,b) * \Big((c,d) * (e,f)\Big)$
+	Since $(a,b) * (0,1) = (1a+0b,1b) = (a,b) = (0b + 1a,1b) = (0,1) * (a,b)$, we have that $(0,1)$ is the identity of the real numbers under $*$,
+	Because we have $(a,b)*(\frac{-a}{b^2},\frac{1}{b})=(\frac{a}{b}+\frac{-a}{b}, b \cdot \frac{1}{b} = (0,1) = (\frac{-a}{b}+\frac{a}{b},\frac{1}{b}) = (\frac{-a}{b^2},\frac{1}{b}) * (a,b)$, that pair $(\frac{-a}{b^2},\frac{1}{b})$ is the inverse of any real $a$ under $8$.
+	Then, since $*$ is a closed associative operation on the real numbers with an identity and an inverse for any element of the real numbers, we have that $\langle \reals, * \rangle$ is a group.
+	
 \end{proof}
 
 \end{document}
