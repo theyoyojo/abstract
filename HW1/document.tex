@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage{url,amsmath,amsthm,enumitem,amsfonts,tikz,verbatim,amssymb, wasysym,multicol}
+\usepackage[makeroom]{cancel}
+\usetikzlibrary{arrows}
+
+\title{Abstract Algebra: Homework \#1}
+\date{Wednesday 27 May 2020}
+\author{Joel Savitz}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ints}{\mathbb{Z}}
+\newtheorem{thm}{Theorem}
+
+\begin{document}
+
+\maketitle
+
+\section{Chapter 3: Excercise A1}
+
+Suppose $*$ is defined on $\mathbb{R}$ as $a * b = a + b + k$ for any $a,b \in \reals$ for some $k \in \reals$.
+
+\begin{thm}
+	$\langle \reals, * \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+	Let $a,b,$ and $c$ be some arbitrary real numbers.
+	Because $a * b = a + b + k \in \reals$, we have that the real numbers are closed under $*$.
+	Then, observe that $a * (b * c)  = a * (b + c + k) = a + (b + c + k) + k = (a + b + k) + c + k = (a + b + k) * c = (a * b) * c$, so $*$ is associative.
+	We also have $a * -k = a + (-k) + k = -k + a + k = -k * a = a$, so $-k$ is the identity for the real numbers under $*$
+	Finally, consider the quantity $-(2k+a)$. Since we have $a * -(2k+a) = a + (-2k) +  (-a) + k = -(2k+a) * a = -k$, that quantity is the inverse of any $a$.
+	Since $*$ is closed under the real numbers and $*$ is associative and $-k$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $-(2k-a)$, $\langle \reals, * \rangle$ is a group.
+\end{proof}
+
+\end{document}
