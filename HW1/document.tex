@@ -8,12 +8,15 @@
 \author{Joel Savitz}
 
 \newcommand{\reals}{\mathbb{R}}
+\newcommand{\ainverse}{\frac{1}{a_1 a_4 - a_2 a_3}\begin{bmatrix} a_4 & -a_2 \\ -a_3 & a_1 \\ \end{bmatrix}}
 \newcommand{\ints}{\mathbb{Z}}
 \newtheorem{thm}{Theorem}
 
 \begin{document}
 
 \maketitle
+
+Note: for the scope of this document, let $\ni$ denote ``such that''.
 
 \section{Chapter 3: Excercise A1}
 
@@ -32,9 +35,9 @@ Suppose $*$ is defined on $\reals$ as $a * b = a + b + k$ for any $a,b \in \real
 	Since $*$ is closed under the real numbers and $*$ is associative and $-k$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $-(2k-a)$, $\langle \reals, * \rangle$ is a group.
 \end{proof}
 
-\section{Chapter 3: Excercise A3}
+\section{Chapter 3: Exercise A3}
 
-Suppose $*$ is defined on $\reals$ as $a * b = a + b ab$ for any $a,b \in \reals$.
+Suppose $*$ is defined on $\reals$ as $a * b = a + b + ab$ for any $a,b \in \reals$.
 
 \begin{thm}
 	$\langle \reals, * \rangle$ is a group.
@@ -50,7 +53,7 @@ Suppose $*$ is defined on $\reals$ as $a * b = a + b ab$ for any $a,b \in \reals
 	Since $*$ is closed under the real numbers and $*$ is associative and $0$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $\frac{-a}{1+a}$, $\langle \reals, * \rangle$ is a group.
 \end{proof}
 
-\section{Chapter 3: Excercise B1}
+\section{Chapter 3: Exercise B1}
 
 Suppose $*$ is defined on $\reals \times \reals$ as $(a,b) * (c,d) = (ad+bc,bd)$ for any $(a,b),(c,d) \in \reals \times \reals$.
 
@@ -68,4 +71,266 @@ Suppose $*$ is defined on $\reals \times \reals$ as $(a,b) * (c,d) = (ad+bc,bd)$
 	
 \end{proof}
 
+\section{Chapter 3: Exercise D}
+
+Suppose $*$ is defined as an operation on the set $A = \{ I, V, H, D\}$ as follows in table \ref{t1}:
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llll}
+$*$ & $I$ & $V$ & $H$ & $D$ \\ \hline
+$I$ & $I$ & $V$ & $H$ & $D$ \\
+$V$ & $V$ & $I$ & $D$ & $H$ \\
+$H$ & $H$ & $D$ & $I$ & $V$ \\
+$D$ & $D$ & $H$ & $V$ & $I$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $*$ on $A$}
+\label{t1}
+\end{table}
+
+
+Then, we have by table \ref{t1} that $*$ is a closed operation on $A$. Given that $*$ is associative, that $I$ is an identity for $*$ by table \ref{t1}, and that any $a \in A$ has the inverse $a \in a$ by table \ref{t1}, we conclude that $\langle A, * \rangle$ is a group.
+
+Furthermore, since we have that $*$ is commutative by table \ref{t1}, $\langle A, * \rangle$ is an Abelian group.
+
+
+\section{Chapter 3: Exercise E}
+
+Suppose some set $A$ is defined as follows in equation \ref{eq1}:
+\begin{equation}
+\label{eq1}
+	A = \{ I, M_1, M_2, M_3, M_4, M_5, M_6, M_7 \}
+\end{equation}
+
+The, suppose the binary operation $*$ is defined on $A$ as follows in table \ref{t2}:
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llllllll}
+	$*$ & $I$ & $M_1$ & $M_2$ & $M_3$ & $M_4$ & $M_5$ & $M_6$ & $M_7$  \\ \hline
+	$I$ & $I$ & $M_1$ & $M_2$ & $M_3$ & $M_4$ & $M_5$ & $M_6$ & $M_7$  \\
+	$M_1$ & $M_1$ & $I$ & $M_3$ & $M_2$ & $M_5$ & $M_4$ & $M_7$ & $M_6$  \\
+	$M_2$ & $M_2$ & $M_3$ & $I$ & $M_1$ & $M_6$ & $M_7$ & $M_4$ & $M_5$  \\
+	$M_3$ & $M_3$ & $M_2$ & $M_1$ & $I$ & $M_7$ & $M_6$ & $M_5$ & $M_4$  \\
+	$M_4$ & $M_4$ & $M_6$ & $M_5$ & $M_7$ & $I$ & $M_1$ & $M_2$ & $M_3$  \\
+	$M_5$ & $M_5$ & $M_4$ & $M_7$ & $M_6$ & $M_1$ & $M_3$ & $I$ & $M_2$  \\
+	$M_6$ & $M_6$ & $M_7$ & $M_4$ & $M_5$ & $M_2$ & $I$ & $M_3$ & $M_1$  \\
+	$M_7$ & $M_7$ & $M_6$ & $M_5$ & $M_4$ & $M_3$ & $M_1$ & $M_2$ & $I$  \\
+\end{tabular}
+\centering
+\caption{Operation table for $*$ on $A$}
+\label{t2}
+\end{table}
+
+\textbf{TODO: fix this table}
+
+\section{A counterexample}
+
+Let $*$ be an operation defined on the set $G = \{ x \in \ints \ni x \neq -1 \}$ defines as $x * y = x + y + xy$.
+
+\begin{thm} \label{thm:6}
+	$\langle G, * \rangle$ is not a group.
+\end{thm}
+
+\begin{proof}
+	Assume for the sake of contradictioion that $G$ has an identity element and call it $e$.
+	Then, we must have for any $a \in G$ that $a * e = a = a + e + ae \implies e = -ae \implies a = -1$.
+	However, $-1 \not\in G$ and so we reach a contradiction,
+	therefore our assumption must be wrong and there does not in fact exist an identity in $G$ under $*$.
+	Then, since a group must have an identity element and $G$ has no identity element, $G$ is not a group.
+\end{proof}
+
+\section{2 $\times$ 2 invertible matrices}
+
+Let $G = \{A = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix} \in \reals^{2 \times 2} \ni \exists A^{-1} \in \reals^{2 \times 2} \ni AA^{-1} = A^{-1}A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix} \}$
+
+\noindent Let $*$ be defined as standard matrix multiplication.
+
+\begin{thm} \label{thm:7}
+	$\langle G,* \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+
+Define the following three matrices $A,B,C \in \reals^{2 \times 2}$ as follows:
+\begin{align} \label{eq:matrix_defs}
+	A = \begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	B = \begin{bmatrix} b_1 & b_2 \\ b_3 & b_4 \\ \end{bmatrix}
+	C = \begin{bmatrix} c_1 & c_2 \\ c_3 & c_4 \\ \end{bmatrix}
+\end{align}
+
+Furthermore, suppose that matrices $A$ and $B$ are nonsingular, i.e. $A,B \in G$
+
+The following equation defines a relationship between these matrices $C = A * B$ and the subsequent equation makes an observation about related determinants.
+
+\begin{align} \label{eq:matrix}
+	C = & AB =
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} b_1 & b_2 \\ b_3 & b_4 \\ \end{bmatrix}
+	=
+	\begin{bmatrix} a_1 b_1 + a_2 b_3 & a_1 b_2 + a_2 b_4 \\ a_3 b_1 + a_4 b_3 & a_3 b_2 + a_4 b_4 \\ \end{bmatrix} \\ \label{eq:matrix2}
+	det(C) = &
+	det(AB) = det(A) \cdot det(B) \neq 0
+\end{align}
+
+Then, since $C$ has real entries as demonstrated in equation \ref{eq:matrix} and since it is nonsingular as demonstrated by the nonzero determinant in equation \ref{eq:matrix2}, we conclude that $C \in G$ and that $G$ is closed under $*$.
+
+From this point on, $A, B$ and $C$ refer to nonasingular 2 by 2 matrices with arbitrary entries and no specific relationship to each other.
+
+Consider the following arithmetic:
+
+
+\begin{align}
+	\label{eq:matrix3}
+	A * B = &
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} b_1 & b_2 \\ b_3 & b_4 \\ \end{bmatrix}
+	=
+	\begin{bmatrix} a_1 b_1 + a_2 b_3 & a_1 b_2 + a_2 b_4 \\ a_3 b_1 + a_4 b_3 & a_3 b_2 + a_4 b_4 \\ \end{bmatrix}
+	\\ \label{eq:matrix4}
+	B * C = &
+	\begin{bmatrix} b_1 & b_2 \\ b_3 & b_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} c_1 & c_2 \\ c_3 & c_4 \\ \end{bmatrix}
+	=
+	\begin{bmatrix} b_1 c_1 + b_2 c_3 & b_1 c_2 + b_2 c_4 \\ b_3 c_1 + b_4 c_3 & b_3 c_2 + b_4 c_4 \\ \end{bmatrix}
+	\\ \label{eq:matrix5}
+	A * (B * C) = &
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} b_1 c_1 + b_2 c_3 & b_1 c_2 + b_2 c_4 \\ b_3 c_1 + b_4 c_3 & b_3 c_2 + b_4 c_4 \\ \end{bmatrix}
+	\\ = & 
+	\begin{bmatrix}
+		a_1 b_1 c_1 + a_1 b_2 c_3 + a_2 b_3 c_1 + a_2 b_4 c_3 &
+		a_1 b_1 c_2 + a_1 b_2 c_4 + a_2 b_3 c_2 + a_2 b_4 c_4 \\
+		a_3 b_1 c_1 + a_3 b_2 c_3 + a_4 b_3 c_1 + a_4 b_4 c_3 &
+		a_3 b_1 c_2 + a_3 b_2 c_4 + a_4 b_3 c_2 + a_4 b_4 c_4 \\
+	\end{bmatrix}
+	\\ \label{eq:matrix6}
+	(A * B) * C = &
+	\begin{bmatrix} a_1 b_1 + a_2 b_3 & a_1 b_2 + a_2 b_4 \\ a_3 b_1 + a_4 b_3 & a_3 b_2 + a_4 b_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} c_1 & c_2 \\ c_3 & c_4 \\ \end{bmatrix}
+	\\ = & 
+	\begin{bmatrix}
+		a_1 b_1 c_1 + a_1 b_2 c_3 + a_2 b_3 c_1 + a_2 b_4 c_3 &
+		a_1 b_1 c_2 + a_1 b_2 c_4 + a_2 b_3 c_2 + a_2 b_4 c_4 \\
+		a_3 b_1 c_1 + a_3 b_2 c_3 + a_4 b_3 c_1 + a_4 b_4 c_3 &
+		a_3 b_1 c_2 + a_3 b_2 c_4 + a_4 b_3 c_2 + a_4 b_4 c_4 \\
+	\end{bmatrix}
+\end{align}
+
+By equations \ref{eq:matrix5} and \ref{eq:matrix6}, we have that $G$ is associative under $*$.
+
+Consider the following:
+
+
+
+\begin{align} \label{eq:id}
+	A * I =
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}
+	=
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	= A =
+	\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}
+	\cdot
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	= I * A
+\end{align}
+
+	Then, $I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is the identity element of $G$.
+
+	
+	Let us write $A^{-1}$ to mean $\ainverse$
+	Consider one last set of equations:
+
+\begin{align}
+	\label{eq:inv1}
+	A * A^{-1} =
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	\cdot
+	\ainverse
+	=
+\begin{bmatrix}
+	\frac{a_1 a_4 -a_2 a_3 }{a_1 a_4 -a_2 a_3 } & \frac{a_2 a_4 -a_2 a_4 }{a_1 a_4 -a_2 a_3 } \\
+	\frac{-a_1 a_3 +a_1 a_3 }{a_1 a_4 -a_2 a_3 } & \frac{-a_2 a_3 +a_1 a_4 }{a_1 a_4  - a_2 a_3 } \\
+\end{bmatrix}
+	\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}
+	= I \\
+	\label{eq:inv2}
+	A^{-1} * A =
+	\ainverse
+	\cdot
+	\begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \\ \end{bmatrix}
+	=
+\begin{bmatrix}
+	\frac{a_1 a_4 -a_2 a_3 }{a_1 a_4 -a_2 a_3 } & \frac{a_2 a_4 -a_2 a_4 }{a_1 a_4 -a_2 a_3 } \\
+	\frac{-a_1 a_3 +a_1 a_3 }{a_1 a_4 -a_2 a_3 } & \frac{-a_2 a_3 +a_1 a_4 }{a_1 a_4  - a_2 a_3 } \\
+\end{bmatrix}
+	\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}
+	= I
+\end{align}
+
+Then, any element $a \in G$ has an inverse $\ainverse \in G$.
+
+Because $G$ is closed under $*$, is associative, has an identity element, and has an inverse for each element,$\langle G, * \rangle$ is a group.
+	
+
+\end{proof}
+
+\begin{thm} \label{abel}
+	$\langle G, * \rangle $ is not an Abelian group.
+\end{thm}
+
+\begin{proof}
+	Let $A = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}$
+	and $B = \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}$.
+	Notice that $AB = \begin{bmatrix} 0 & 1 \\ -2 & 1 \end{bmatrix}$
+	while $BA = \begin{bmatrix} 1 & 1 \\ -2 & 0 \end{bmatrix}$.
+	Then, we have some $A,B \in G$ where $AB \neq BA$.
+	We conclude that $G$ is not commutative under $*$
+	and by definition $G$ is not an Abelian group.
+\end{proof}
+
+\section{A subset of nonsingular 2 $\times$ 2 matrices}
+
+
+Let $G$ be defined as follows:
+\begin{align*}
+	G = \{A = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix} \in \reals^{2 \times 2} &
+	\ni \exists A^{-1} \in \reals^{2 \times 2} \ni AA^{-1} = A^{-1}A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ \end{bmatrix}
+\\ & \land a + c = 1 \land b + d = 1\}
+\end{align*}
+
+Let $*$ be defined on $G$ as standard matrix multiplication.
+
+\begin{thm} \label{thm:unitcols}
+	$\langle G, * \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+	Let the definitions in equation \ref{eq:matrix_defs} hold and suppose $C = AB$ as described by equation \ref{eq:matrix}. We have the following equations by taking the sum of the colunms of $C$ from equation \ref{eq:matrix}:
+	\begin{align}
+		a_1 + a_3 = a_2 + a_4 = b_1 + b_3 + b_2 + b_4 = 1 \\
+		a_1 b_1 + a_2 b_3 + a_3 b_1 + a_4 b_3 = b_1(a_1+a_3) + b_3(a_2+a_4) = b_1 + b_3 = 1 \\
+		a_1 b_2 + a_2 b_4 + a_3 b_2 + a_4 b_4 = b_2(a_1+a_3) + b_4(a_2+a_4) = b_2 + b_4 = 1
+	\end{align}
+	Since the columns of $C$ sum to $1$, we have that $C \in G$ and in general that $G$ is closed under $*$.
+
+	Now, suppose $A,B$ and $C$ are defined with generic real entries as described by equation \ref{eq:matrix_defs}.
+
+By equations \ref{eq:matrix5} and \ref{eq:matrix6}, we have that $G$ is associative under $*$, since those equations hold for our current defintiion of $G$.
+
+By the same reasoning demonstrated in equation \ref{eq:id}, we have that $I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ is the identity for $G$.
+
+By the same reasoning demonstrated in equations \ref{eq:inv1} and \ref{eq:inv2}, we have that $\ainverse$ is the inverse of any $A = \begin{bmatrix} a_1 & a_2 \\ a_3 & a_4 \end{bmatrix} \in G$.
+
+Then, since $G$ is closed under $*$, since $G$ is associative under $*$, since $G$ has an identity element and since every element of $G$ has an inverse, we conclude that $\langle G, * \rangle$ is a group.
+
+\end{proof}
+
+\pagebreak
 \end{document}
