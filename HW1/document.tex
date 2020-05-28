@@ -30,7 +30,7 @@ Suppose $*$ is defined on $\reals$ as $a * b = a + b + k$ for any $a,b \in \real
 	Let $a,b,$ and $c$ be some arbitrary real numbers.
 	Because $a * b = a + b + k \in \reals$, we have that the real numbers are closed under $*$.
 	Then, observe that $a * (b * c)  = a * (b + c + k) = a + (b + c + k) + k = (a + b + k) + c + k = (a + b + k) * c = (a * b) * c$, so $*$ is associative.
-	We also have $a * -k = a + (-k) + k = -k + a + k = -k * a = a$, so $-k$ is the identity for the real numbers under $*$
+	We also have $a * -k = a + (-k) + k = -k + a + k = -k * a = a$, so $-k$ is the identity for the real numbers under $*$.
 	Finally, consider the quantity $-(2k+a)$. Since we have $a * -(2k+a) = a + (-2k) +  (-a) + k = -(2k+a) * a = -k$, that quantity is the inverse of any $a$.
 	Since $*$ is closed under the real numbers and $*$ is associative and $-k$ is the identity of $*$ under the real numbers and any real number $a$ has an inverse under $*$ of $-(2k-a)$, $\langle \reals, * \rangle$ is a group.
 \end{proof}
@@ -58,22 +58,24 @@ Suppose $*$ is defined on $\reals$ as $a * b = a + b + ab$ for any $a,b \in \rea
 Suppose $*$ is defined on $\reals \times \reals$ as $(a,b) * (c,d) = (ad+bc,bd)$ for any $(a,b),(c,d) \in \reals \times \reals$.
 
 \begin{thm}
-	$\langle \reals, * \rangle$ is a group.
+	$\langle \reals \times \reals, * \rangle$ is a group.
 \end{thm}
 
 \begin{proof}
 	Let $(a,b),(c,d),(e,f) \in \reals \times \reals$.
-	Consider that $(a,b) * (c,d) = (ad+bc,bd) \in \reals \times \reals$ since $ad+bc \in \reals \land bc \in \reals$. Then, $\reals \times \reals$ is closed under $*$
-	Now observe the following equivalence: $\Big((a,b) * (c,d)\Big) * (e,f) = (ad+bc,bd) * (e,f) = (adf+bcf+bde,bdf) = (a,b) * (cf+de,df) = (a,b) * \Big((c,d) * (e,f)\Big)$
-	Since $(a,b) * (0,1) = (1a+0b,1b) = (a,b) = (0b + 1a,1b) = (0,1) * (a,b)$, we have that $(0,1)$ is the identity of the real numbers under $*$,
-	Because we have $(a,b)*(\frac{-a}{b^2},\frac{1}{b})=(\frac{a}{b}+\frac{-a}{b}, b \cdot \frac{1}{b} = (0,1) = (\frac{-a}{b}+\frac{a}{b},\frac{1}{b}) = (\frac{-a}{b^2},\frac{1}{b}) * (a,b)$, that pair $(\frac{-a}{b^2},\frac{1}{b})$ is the inverse of any real $a$ under $8$.
-	Then, since $*$ is a closed associative operation on the real numbers with an identity and an inverse for any element of the real numbers, we have that $\langle \reals, * \rangle$ is a group.
+	Consider that $(a,b) * (c,d) = (ad+bc,bd) \in \reals \times \reals$ since $ad+bc \in \reals \land bc \in \reals$.
+	Then, $\reals \times \reals$ is closed under $*$.
+	Now observe the following equivalence: $\Big((a,b) * (c,d)\Big) * (e,f) = (ad+bc,bd) * (e,f) = (adf+bcf+bde,bdf) = (a,b) * (cf+de,df) = (a,b) * \Big((c,d) * (e,f)\Big)$.
+	This equation holds if and only if $\reals \times \reals$ is associative under $*$.
+	Since $(a,b) * (0,1) = (1a+0b,1b) = (a,b) = (0b + 1a,1b) = (0,1) * (a,b)$, we have that $(0,1)$ is the identity of $\reals \times \reals$ under $*$,
+	Because we have $(a,b)*(\frac{-a}{b^2},\frac{1}{b})=(\frac{a}{b}+\frac{-a}{b}, b \cdot \frac{1}{b}) = (0,1) = (\frac{-a}{b}+\frac{a}{b},\frac{1}{b}) = (\frac{-a}{b^2},\frac{1}{b}) * (a,b)$, that pair $(\frac{-a}{b^2},\frac{1}{b})$ is the inverse of any $a \in \reals \times \reals$ under $*$.
+	Then, since $*$ is a closed associative operation on $\reals \times \reals$ with an identity and an inverse for any element of $\reals \times \reals$, we have that $\langle \reals \times \reals, * \rangle$ is a group.
 	
 \end{proof}
 
 \section{Chapter 3: Exercise D}
 
-Suppose $*$ is defined as an operation on the set $A = \{ I, V, H, D\}$ as follows in table \ref{t1}:
+Suppose $*$ is defined as an operation on the set $A = \{ I, V, H, D\}$ as specified in table \ref{t1}.
 
 \begin{table}[!ht] 
 \begin{tabular}{l|llll}
@@ -111,17 +113,27 @@ The, suppose the binary operation $*$ is defined on $A$ as follows in table \ref
 	$M_1$ & $M_1$ & $I$ & $M_3$ & $M_2$ & $M_5$ & $M_4$ & $M_7$ & $M_6$  \\
 	$M_2$ & $M_2$ & $M_3$ & $I$ & $M_1$ & $M_6$ & $M_7$ & $M_4$ & $M_5$  \\
 	$M_3$ & $M_3$ & $M_2$ & $M_1$ & $I$ & $M_7$ & $M_6$ & $M_5$ & $M_4$  \\
-	$M_4$ & $M_4$ & $M_6$ & $M_5$ & $M_7$ & $I$ & $M_1$ & $M_2$ & $M_3$  \\
-	$M_5$ & $M_5$ & $M_4$ & $M_7$ & $M_6$ & $M_1$ & $M_3$ & $I$ & $M_2$  \\
-	$M_6$ & $M_6$ & $M_7$ & $M_4$ & $M_5$ & $M_2$ & $I$ & $M_3$ & $M_1$  \\
-	$M_7$ & $M_7$ & $M_6$ & $M_5$ & $M_4$ & $M_3$ & $M_1$ & $M_2$ & $I$  \\
+	$M_4$ & $M_4$ & $M_6$ & $M_5$ & $M_7$ & $I$ & $M_2$ & $M_1$ & $M_3$  \\
+	$M_5$ & $M_5$ & $M_7$ & $M_4$ & $M_6$ & $M_1$ & $M_3$ & $I$ & $M_2$  \\
+	$M_6$ & $M_6$ & $M_4$ & $M_7$ & $M_5$ & $M_2$ & $I$ & $M_3$ & $M_1$  \\
+	$M_7$ & $M_7$ & $M_5$ & $M_6$ & $M_4$ & $M_3$ & $M_1$ & $M_2$ & $I$  \\
 \end{tabular}
 \centering
 \caption{Operation table for $*$ on $A$}
 \label{t2}
 \end{table}
 
-\textbf{TODO: fix this table}
+\begin{thm}
+	Assuming associativity holds, $\langle A, * \rangle$ is a group.
+\end{thm}
+
+\begin{proof}
+	We observe by inspection of table \ref{t2} that $A$ is closed under $*$.
+	We also conclude from inspection of table $A$ that $(\forall a \in A)(a * I = I * a = a) \iff I$ is the identity element for $A$ under $*$ and that $(\forall a \in A)(\exists b \in A \ni a * b = b * a = I) \iff $ every element of $A$ has an inverse under $*$.
+	Then, since $*$ is a closed associative binary operation on $A$, since $A$ has the identity $I$ under $*$, and since every element of $A$ has an inverse under $*$, we conclude that $\langle A, * \rangle$ is a group.
+\end{proof}
+
+Since we some $a,b \in A \ni a * b \neq b * a$, for example $M_2 = M_4 * M_5 \neq M_5 * M_4 = M_1$, we also have that $\langle A, * \rangle$ is not commutative and therefore it is not an Abelian group.
 
 \section{A counterexample}
 
@@ -136,7 +148,7 @@ Let $*$ be an operation defined on the set $G = \{ x \in \ints \ni x \neq -1 \}$
 	Then, we must have for any $a \in G$ that $a * e = a = a + e + ae \implies e = -ae \implies a = -1$.
 	However, $-1 \not\in G$ and so we reach a contradiction,
 	therefore our assumption must be wrong and there does not in fact exist an identity in $G$ under $*$.
-	Then, since a group must have an identity element and $G$ has no identity element, $G$ is not a group.
+	Then, since a group must have an identity element and $G$ has no identity element under $*$, $G$ is not a group.
 \end{proof}
 
 \section{2 $\times$ 2 invertible matrices}
@@ -288,11 +300,11 @@ Because $G$ is closed under $*$, is associative, has an identity element, and ha
 \begin{proof}
 	Let $A = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}$
 	and $B = \begin{bmatrix} 1 & 0 \\ -1 & 1 \end{bmatrix}$.
-	Notice that $AB = \begin{bmatrix} 0 & 1 \\ -2 & 1 \end{bmatrix}$
-	while $BA = \begin{bmatrix} 1 & 1 \\ -2 & 0 \end{bmatrix}$.
-	Then, we have some $A,B \in G$ where $AB \neq BA$.
-	We conclude that $G$ is not commutative under $*$
-	and by definition $G$ is not an Abelian group.
+	Notice that $A * B = \begin{bmatrix} 0 & 1 \\ -2 & 1 \end{bmatrix}$
+	while $B * A = \begin{bmatrix} 1 & 1 \\ -2 & 0 \end{bmatrix}$.
+	Then, we have some $A,B \in G$ where $A * B \neq B * A$.
+	We conclude that $G$ is not commutative under $*$.
+	Finally, we have that $\langle G, * \rangle$ is not an Abelian group.
 \end{proof}
 
 \section{A subset of nonsingular 2 $\times$ 2 matrices}
@@ -314,7 +326,7 @@ Let $*$ be defined on $G$ as standard matrix multiplication.
 \begin{proof}
 	Let the definitions in equation \ref{eq:matrix_defs} hold and suppose $C = AB$ as described by equation \ref{eq:matrix}. We have the following equations by taking the sum of the colunms of $C$ from equation \ref{eq:matrix}:
 	\begin{align}
-		a_1 + a_3 = a_2 + a_4 = b_1 + b_3 + b_2 + b_4 = 1 \\
+		a_1 + a_3 = a_2 + a_4 = b_1 + b_3 = b_2 + b_4 = 1 \\
 		a_1 b_1 + a_2 b_3 + a_3 b_1 + a_4 b_3 = b_1(a_1+a_3) + b_3(a_2+a_4) = b_1 + b_3 = 1 \\
 		a_1 b_2 + a_2 b_4 + a_3 b_2 + a_4 b_4 = b_2(a_1+a_3) + b_4(a_2+a_4) = b_2 + b_4 = 1
 	\end{align}
