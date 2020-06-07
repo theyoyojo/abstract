@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{url,amsmath,amsthm,enumitem,amsfonts,tikz,verbatim,amssymb, wasysym,multicol, nccmath}
+\usepackage[makeroom]{cancel}
+\usetikzlibrary{arrows}
+
+\title{Abstract Algebra: Homework \#3}
+\date{Wednesday 10 June 2020}
+\author{Joel Savitz}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\ainverse}{\frac{1}{a_1 a_4 - a_2 a_3}\begin{bmatrix} a_4 & -a_2 \\ -a_3 & a_1 \\ \end{bmatrix}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\contreals}{\mathcal{C}(\reals)}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+
+\maketitle
+
+Note: for the scope of this document, let $\ni$ denote ``such that''.
+
+\section{Chapter 7, Exercise A1}
+
+Suppose we have some $f,g,h \in S_6$ such that:
+\begin{align}
+	f = \binom{1\ 2\ 3\ 4\ 5\ 6}{6\ 1\ 3\ 5\ 4\ 2} \\
+	g = \binom{1\ 2\ 3\ 4\ 5\ 6}{2\ 3\ 1\ 6\ 5\ 4} \\
+	h = \binom{1\ 2\ 3\ 4\ 5\ 6}{3\ 1\ 6\ 4\ 5\ 2}
+\end{align}
+
+Then, we have the following inverse functions and compositions of functions:
+
+\begin{align}
+	f^{-1} = & \binom{1\ 2\ 3\ 4\ 5\ 6}{2\ 6\ 3\ 5\ 4\ 1} \\
+	g^{-1} = & \binom{1\ 2\ 3\ 4\ 5\ 6}{3\ 1\ 2\ 6\ 5\ 4} \\
+	h^{-1} = & \binom{1\ 2\ 3\ 4\ 5\ 6}{2\ 6\ 1\ 4\ 5\ 3} \\
+	f \circ g = & \binom{1\ 2\ 3\ 4\ 5\ 6}{1\ 3\ 6\ 2\ 4\ 5} \\
+	g \circ f = & \binom{1\ 2\ 3\ 4\ 5\ 6}{4\ 2\ 1\ 5\ 6\ 3}
+\end{align}
+
+\section{Chapter 4, Exercise A4}
+
+\pagebreak
+\end{document}
