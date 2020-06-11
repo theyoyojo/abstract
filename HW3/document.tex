@@ -39,7 +39,379 @@ Then, we have the following inverse functions and compositions of functions:
 	g \circ f = & \binom{1\ 2\ 3\ 4\ 5\ 6}{4\ 2\ 1\ 5\ 6\ 3}
 \end{align}
 
-\section{Chapter 4, Exercise A4}
+\section{Chapter 7, Exercise B2}
 
-\pagebreak
+Suppose we have some $f \in S_6$ such that:
+\begin{align}
+	f = & \binom{1\ 2\ 3\ 4\ 5\ 6}{2\ 3\ 4\ 1\ 6\ 5}
+\end{align}
+
+Then, we generate a cyclic subgroup of $S_6$ containing the following elements. 
+\begin{align}
+	f^2 = ff = & \binom{1\ 2\ 3\ 4\ 5\ 6}{3\ 4\ 1\ 2\ 5\ 6} \\
+	f^3 = fff = & \binom{1\ 2\ 3\ 4\ 5\ 6}{4\ 1\ 2\ 3\ 6\ 5} \\
+	f^4 = ffff = & \binom{1\ 2\ 3\ 4\ 5\ 6}{1\ 2\ 3\ 4\ 5\ 6} = e \\
+	f^5 = ff^4  = fe = & f
+\end{align}
+
+Let $A = \{ f, f^2, f^3, f^4 \}$.
+
+It is readily checked that $A$
+is a $4^{th}$ order cyclic subgroup of $S_6$
+under the operation of
+function composition.
+
+\section{Chapter 7, Exercise B3}
+
+Define a subset of $S_5$ as $A = \{ e, f, g, h \}$
+with elements defines as follows:
+
+\begin{align}
+	e = & \binom{1\ 2\ 3\ 4\ 5}{1\ 2\ 3\ 4\ 5} \\
+	f = & \binom{1\ 2\ 3\ 4\ 5}{2\ 1\ 3\ 4\ 5} \\
+	g = & \binom{1\ 2\ 3\ 4\ 5}{1\ 2\ 3\ 5\ 4} \\
+	h = & \binom{1\ 2\ 3\ 4\ 5}{2\ 1\ 3\ 5\ 4}
+\end{align}
+
+Table \ref{t1} describes the behavior of $A$
+under function composition.
+
+We see by inspection of table \ref{t1} that
+$A$ is closed under $\circ$,
+contains the identity of $S_6$,
+contains an inverse for each element,
+and contains absolutely zero non-commutative elements.
+
+Then, we conclude that $A$ is a subgroup of $S_6$,
+and furthermore we conclude that $A$ is an
+Abelian subgroup of $S_6$
+since any element of $A$ commutes with
+any other element of $A$.
+
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llll}
+	$\circ$ & $e$ & $f$ & $g$ & $h$ \\ \hline
+	$e$ & $e$ & $f$ & $g$ & $h$ \\
+	$f$ & $f$ & $e$ & $h$ & $g$ \\
+	$g$ & $g$ & $h$ & $e$ & $f$ \\
+	$h$ & $h$ & $g$ & $f$ & $e$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $A$ under $\circ$}
+\label{t1}
+\end{table}
+
+\section{Chapter 7, Exercise C2}
+
+Suppose $A = \{ x \in \reals \ni x \neq 0 \}$
+and $G = \{e, f, g, h \}$ where:
+
+\begin{align}
+	e(x) =  x \land
+	f(x) = \frac{1}{x} \land
+	g(x) = -x \land
+	h(x) = \frac{-1}{x}
+\end{align}
+
+Table \ref{t2} describes the behavior of $A$
+under function composition.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llll}
+	$\circ$ & $e$ & $f$ & $g$ & $h$ \\ \hline
+	$e$ & $e$ & $f$ & $g$ & $h$ \\
+	$f$ & $f$ & $e$ & $h$ & $g$ \\
+	$g$ & $g$ & $h$ & $e$ & $f$ \\
+	$h$ & $h$ & $g$ & $f$ & $e$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $A$ under $\circ$}
+\label{t2}
+\end{table}
+
+By inspection of table \ref{t2},
+we see that $G$ is closed under $\circ$,
+that the identity of $S_A$ is in $G$,
+and that every element in $G$
+has its inverse under $\circ$ in $G$,
+so we conclude that $G$ is a subgroup of $S_A$.
+
+\textbf{Remark 1:}
+Tables \ref{t1} and \ref{t2} are identical,
+though the elements of $G$
+are defined in terms
+of an enirely different $A$.
+
+In fact,
+if we continue to let $G$ denote
+the group in this problem
+and if we let $G'$ denote
+the $G$ from the previous problem,
+and let $e', f', g', h'$ denote the $e,f,g,h$ from the previous problem
+and if we define a $\phi:G \to G'$
+such that $\phi(e) = e', \phi(f) = f', \phi(g) = g', \phi(h) = h'$,
+we observe the linearity of $\phi$,
+that $(\forall x,y \in G)(\phi(x \circ y) = \phi(x) \circ \phi(y))$
+and that $\phi$ is a bijection,
+so we have group isomorphism between $G$ and $G'$,
+or $G \cong G'$.
+
+\section{Chapter 7, Exercise F2}
+
+Suppose $H$ is the group of symmetries of the rectangle.
+
+Denote the full $2\pi$ radian rotation
+of the rectangle
+as $r_e$,
+since it is the identity of $G$
+
+Denote the $\pi$ radian rotation
+of the rectangle
+as $r_\pi$.
+
+Denote the horizontal and vertical flips
+of the rectangle
+as $f_h$ and $f_v$ respectively.
+
+More precisely, we define the following four permutations:
+\begin{align}
+	r_e = \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} \land
+	r_\pi = \binom{1\ 2\ 3\ 4}{3\ 4\ 1\ 2} \land
+	f_h  = \binom{1\ 2\ 3\ 4}{4\ 3\ 2\ 1} \land
+	f_v  = \binom{1\ 2\ 3\ 4}{2\ 1\ 4\ 3}
+\end{align}
+
+Then, table \ref{t3} describes the behavior of $H$
+under function compositon
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llll}
+	$\circ$ & $r_e$ & $r_\pi$ & $f_h$ & $f_v$ \\ \hline
+	$r_e$ & $r_e$ & $r_\pi$ & $f_h$ & $f_v$ \\
+	$r_\pi$ & $r_\pi$ & $r_e$ & $f_v$ & $f_h$ \\
+	$f_h$ & $f_h$ & $f_v$ & $r_e$ & $r_\pi$ \\
+	$f_v$ & $f_v$ & $f_h$ & $r_\pi$ & $r_e$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $H$ under $\circ$}
+\label{t3}
+\end{table}
+
+
+\textbf{Remark 2:} Define a function $\psi:H \to G$,
+where $G$ is defined as in the previous exercise,
+such that $\psi(r_e) = e$,
+$\psi(r_\pi) = f$,
+$\psi(f_h) = g$, and
+$\psi(f_v) = h$.
+We see by inspection that $\psi$ is bijective
+and it is readily checked
+via tables \ref{t2} and \ref{t3}
+that $(\forall x,y \in H)(\psi(x) \circ \psi(y) = \psi(x \circ y))$ holds.
+Then, we have $H \cong G$,
+and by transitivity of isomorphism
+we have that tables \ref{t1}, \ref{t2}, and \ref{t3}
+describe isomorphic groups.
+
+\section{Chapter 7, Exercise H3}
+
+Suppose some set $B$ is a subset of a finite set $A$.
+
+Let $G$ be the subset of $S_A$ where $(\forall x \in B)(f(x) \in B)$.
+
+\begin{thm} \label{thm1}
+	$G$ is a subgroup of $A$.
+\end{thm}
+
+\begin{proof}
+	We have by the definition of $G$ that for any $f \in G$,
+	we have $f(x) \in B$ for any $x \in B$, so for any two
+	$f,g \in B$, we must also have $(f \circ g)(x) = f(g(x)) \in B$,
+	so $G$ is closed under $\circ$.
+
+	Then, for some $f \in G$, we have $f(x) \in B$ for any $x \in B$,
+	and we have that any permutation is a one-to-one correspondence,
+	so if we simply reverse the direction of the mappings for $f$,
+	we have a $g$ where $g(f(x)) = x$ and since $x \in B$ and $f(x) \in B$
+	we must also have $g \in B$ and we see that $g = f^{-1}$.
+	So, every element of $G$ has its inverse in $G$ and then
+	it follows immediately that the identity of $S_A$ is in $G$.
+	
+	Since $G$ is closed under function composition and every element
+	has an inverse, we conclude that $G$ is a subgroup of $S_A$.
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+\section{Chapter 8, Exercise A1(f)}
+
+Suppose $f = (6\ 1\ 4\ 8)(2\ 3\ 4\ 5)(1\ 2\ 4\ 9\ 3) \in S_9$.
+
+\medskip
+\noindent We can rewrite $f$ as $\binom{1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}{3\ 5\ 4\ 9\ 2\ 1\ 7\ 6\ 8}$.
+
+\section{Chapter 8, Exercise A2(d)}
+
+Suppose $f = \binom{1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}{9\ 8\ 7\ 4\ 3\ 6\ 5\ 1\ 2} \in S_9$.
+
+\medskip
+\noindent We can rewrite $f$ as $(1\ 9\ 2\ 8)(3\ 7\ 5)$.
+
+\section{Chapter 8, Exercise A3(b)}
+
+Suppose $f = (4\ 1\ 6)(8\ 2\ 3\ 5)$
+
+\medskip
+\noindent We can rewrite $f$ as $(6\ 1)(6\ 4)(5\ 3)(5\ 2)(5\ 8)$.
+
+
+\section{Chapter 8, Exercise B1(b)}
+
+Let $\alpha = (1\ 2\ 3\ 4)$.
+
+Then:
+\begin{align}
+	\alpha^{-1} = & (1\ 4\ 3\ 2) \\
+	\alpha^2 = & (1\ 3)(2\ 4) \\
+	\alpha^3 = & (1\ 4\ 3\ 2) \\
+	\alpha^4 = & (1)(2)(3)(4) \\
+	\alpha^5 = & (1\ 2\ 3\ 4) = \alpha
+\end{align}
+
+\section{Chapter 8, Exercise C1(c)}
+
+Let $f = (1\ 2)(7\ 6)(3\ 4\ 5)$.
+
+If we rewrite $f$ as $(1\ 2)(7\ 6)(5\ 4)(5\ 3)$
+we can see by inspection
+that $f$ is an even permutation
+since it is the product of an even number
+of transpositions.
+
+\section{Symmetries of the equilateral triangle}
+
+Let $G \subseteq S_3$ be the symmetries of the equilateral triangle.
+
+Denote the rotations by $r_1, r_2, r_3$ for a rotation $r_n$ of $\frac{2 n\pi}{3}$ radians.
+Denote the flips about each axis of symmetry by $f_1, f_2, f_3$.
+
+More precisely, we define the following permutations:
+\begin{align}
+	r_1 = & \binom{1\ 2\ 3}{2\ 3\ 1} &
+	r_2 = & \binom{1\ 2\ 3}{3\ 1\ 2} &
+	r_3 = & \binom{1\ 2\ 3}{1\ 2\ 3} \\
+	f_1 = & \binom{1\ 2\ 3}{1\ 3\ 2} &
+	f_2 = & \binom{1\ 2\ 3}{3\ 2\ 1} &
+	f_3 = & \binom{1\ 2\ 3}{2\ 1\ 3}
+\end{align}
+
+
+Table 4 describes the behavior of $G$ under function composition.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llllll}
+	$\circ$ & $r_3$ & $r_1$ & $r_2$ & $f_1$ & $f_2$ & $f_3$	\\ \hline
+	$r_3$ & $r_3$ & $r_1$ & $r_2$ & $f_1$ & $f_2$ & $f_3$   \\
+	$r_1$ & $r_1$ & $r_2$ & $r_3$ & $f_3$ & $f_1$ & $f_2$ 	\\
+	$r_2$ & $r_2$ & $r_3$ & $r_1$ & $f_2$ & $f_3$ & $f_1$ 	\\
+	$f_1$ & $f_1$ & $f_3$ & $f_2$ & $r_3$ & $r_2$ & $r_1$ 	\\
+	$f_2$ & $f_2$ & $f_1$ & $f_3$ & $r_2$ & $r_3$ & $r_2$ 	\\
+	$f_3$ & $f_3$ & $f_2$ & $f_1$ & $r_1$ & $r_2$ & $r_3$	\\
+\end{tabular}
+\centering
+\caption{Operation table for $G$ under $\circ$}
+\label{t4}
+\end{table}
+
+\textbf{Remark 3:} We see $G = S_3$ by the observation that $|G| = 3! = 6 = |S_3|$.
+
+\section{A subgroup of $S_4$}
+
+Suppose $G = \{ \binom{1\ 2\ 3\ 4}{x\ y\ z\ 4} \in S_4 \ni x,y,z \in \{1,2,3\} \}$.
+
+Then, we ``arbitrarily" denote the elements of $G$ as follows:
+
+\begin{align}
+	r_1 = & \binom{1\ 2\ 3\ 4}{2\ 3\ 1\ 4} &
+	r_2 = & \binom{1\ 2\ 3\ 4}{3\ 1\ 2\ 4} &
+	r_3 = & \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} \\
+	f_1 = & \binom{1\ 2\ 3\ 4}{1\ 3\ 2\ 4} &
+	f_2 = & \binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	f_3 = & \binom{1\ 2\ 3\ 4}{2\ 1\ 3\ 4}
+\end{align}
+
+By sheer coincidence, table \ref{t4} describes the behavior of $G$
+under function composition.
+
+\section{Chapter 8, Exercises C2 and C3}
+
+\begin{thm} \label{thm2}
+	If two permutations are both even or both odd,
+	then their product is even.
+\end{thm}
+
+\begin{proof}
+	Suppose we have some $\pi \in S_n$
+	that can be factored
+	into $m$ transpositions.
+	We note that $(-1)^m = 1$ iff $m$ is even
+	and $(-1)^m = -1$ iff $m$ is odd.
+	
+	We know that for any two permutations $a,b \in S_n$
+	composed of $q$ and $r$ transpositions each respectively,
+	if we let $s$ denote the number of transpositions
+	of $ab$, we have $(-1)^s = (-1)^q \cdot (-1)^r$.
+
+	Then, suppose we have two even permutations $x$ and $y$
+	composed of $i$ and $j$ transpositions respectively.
+	We have $(-1)^i \cdot (-1)^j = 1 \cdot 1 = 1$
+	which implies that $xy$ must be an even permutation.
+
+	Alternatively, suppose we have two odd permutations $x$ and $y$
+	composed of $i$ and $j$ transpositions respectively.
+	We have $(-1)^i \cdot (-1)^j = -1 \cdot -1 = 1$
+	which implies that $xy$ must be an even permutation.
+
+	Finally, we conclude that if any two permutations are
+	either both even or both odd, we must have that
+	their product is even.
+
+	This proves theorem \ref{thm2}.
+\end{proof}
+
+\section{A subset of $S_4$ consisting of transpositions}
+
+Suppose $G = \{ e, (1\ 2)(3\ 4), (1\ 3)(2\ 4), (1\ 4)(2\ 3) \} \subseteq S_4$.
+
+Denote the elements of $G$ as follows:
+\begin{align}
+	e = & e \\
+	f = & (1\ 2)(3\ 4) \\
+	g = & (1\ 3)(2\ 4) \\
+	h = & (1\ 4)(2\ 3)
+\end{align}
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llll}
+	$\circ$ & $e$ & $f$ & $g$ & $h$ \\ \hline
+	$e$ & $e$ & $f$ & $g$ & $h$ \\
+	$f$ & $f$ & $e$ & $h$ & $g$ \\
+	$g$ & $g$ & $h$ & $e$ & $f$ \\
+	$h$ & $h$ & $g$ & $f$ & $e$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $G$ under $\circ$}
+\label{t5}
+\end{table}
+
+Hmm, this looks suspicously similar to table \ref{t2}.
+
+Anyway, we confidently conclude that
+due to the fact that $G$
+is closed under $\circ$
+and has an inverse under $\circ$
+for every element in the set,
+including the identity of $S_4$,
+$G$ is a subgroup of $S_4$.
+
 \end{document}
