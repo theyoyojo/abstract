@@ -102,21 +102,19 @@ and suppose $b \in G$.
 
 \begin{proof}
 	Let $n = \ord(a)$ and let $m = \ord(b)$.
-	We have $m = \ord(b) \iff b^m = e$
+	We have $m = \ord(b) \iff b^m = e$.
 	Since $G = \langle a \rangle$,
 	we have $G = \{e, a, a^2, a^3, ..., a^{n-1} \}$.
 	Since $b \in G$, we must have that
 	$\exists z \in \ints \ni 0 < z \le n$
-	such that $a^z = b$
+	such that $a^z = b$.
 	Then if we take both sides to the power of $m$
-	we have $a^{mz} = b^m$.
-	Then clearly $m$ is a factor of $n$
-	if $\frac{z - 1}{k} \in \ints$.
-	Since $a^n = a^{mz}$,
-	we must have an integer $k$ where
-	$kmz = n$,
-	therefore $m$ is a factor of $n$
-	and the order of $b$ is a factor of the order of $a$.
+	we have $a^{mz} = b^m = e = a^n$.
+	Then clearly $m$ is a factor of $n$,
+	since $a^n = a^{mz}$
+	so we conclude that
+	the order of $b$ is a factor of the order of $a$.
+	This proves theorem \ref{thm2}.
 \end{proof}
 
 \section{Chapter 11, Exercise D1}
