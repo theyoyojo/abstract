@@ -26,7 +26,7 @@
 
 Suppose $f = \binom{1\ 2\ 3\ 4\ 5\ 6}{6\ 1\ 3\ 4\ 5\ 4}$.
 
-Then, $f$ generates a subgroup $S_6$
+Then, $f$ generates a subgroup of $S_6$
 --- denoted $\langle f \rangle$ ---
 like so:
 
@@ -85,7 +85,7 @@ $\ord(G) = n$.
 	$\exists x \in G \ni \ord(x) = n \implies G$ is cyclic.
 
 	Finally, since we have the implication in both directions,
-	we must have the bidirectional implication
+	we must have the bidirectional implication that:
 	$G$ is cyclic $\iff \exists x \in G \ni \ord(x) = n$.
 	This proves theorem \ref{thm1}.
 \end{proof}
@@ -109,8 +109,9 @@ and suppose $b \in G$.
 	$\exists z \in \ints \ni 0 < z \le n$
 	such that $a^z = b$
 	Then if we take both sides to the power of $m$
-	we have $a^{mz} = b^m = e = a^n$.
+	we have $a^{mz} = b^m$.
 	Then clearly $m$ is a factor of $n$
+	if $\frac{z - 1}{k} \in \ints$.
 	Since $a^n = a^{mz}$,
 	we must have an integer $k$ where
 	$kmz = n$,
@@ -138,7 +139,7 @@ Suppose $G$ is a group and $a,b \in G$.
 	since it is some power of $b$.
 	Thus $x \in \langle a \rangle \implies x \in \langle b \rangle
 	\iff \langle a \rangle \subseteq \langle b \rangle$.
-	So we finally arrive at the implication
+	We arrive at the implication
 	$\Big(\exists k \in \ints \ni a = b^k \Big) \implies
 	\langle a \rangle \subseteq \langle b \rangle$
 	and this proves theorem \ref{thm3}.
@@ -167,8 +168,8 @@ where there exists some integer $k$ such that $a = b^k$
 	Conversely, suppose $\langle a \rangle = \langle b \rangle$.
 	Then, we can rewrite this equation as
 	$\{e, a, a^2, a^3, ..., a^{n-1} \} = \{e, b, b^2, b^3, ..., b^{n-1} \}$.
-	Since $a = b^k$, we must have $a \in \langle b \rangle$,
-	and so some power of $b$ is equal to $a$.
+	Since any $a^q \in \langle a \rangle = \langle b \rangle$,
+	we must have an integer $q$ where $a^q = b \in \langle b \rangle$.
 
 	Then, since we have the individual implication in both directions,
 	we have the biconditional implication
@@ -193,7 +194,7 @@ Define a relation $\sim$ as $m \sim n \iff |m| = |n|$
 	i.e. $\sim$ is reflexive.
 
 	Suppose $a \sim b$.
-	Then, $|a| = |b| \iff |b| = a$
+	Then, $|a| = |b| \iff |b| = |a|$
 	since equality is symmetric,
 	so $a \sim b$
 	and we have $a \sim b \implies b \sim a$,
@@ -260,11 +261,9 @@ Define a relation $\sim$ as $m \sim n \iff a - b \in \rats$.
 
 If we let $\operatorname{floor}(x)$ denote the
 $n \in \rats \ni n \le x \land (\forall m \in \ints)(m \geq n \implies m = n)$,
-we can describe the equivalence classes of an $x \in \reals$
-by $[x] = \{y: y = n + \operatorname{floor}(x) \ni n \in \rats \}$.
+we can describe the equivalence class of an $x \in \reals$
+with respect to $\sim$ by $[x] = \{y: y = n + \operatorname{floor}(x) \ni n \in \rats \}$.
 We see from this description of $[x]$ that $[0] = \rats$.
-
-We see that $\sim$ partitions the real numbers into the rational and irrational numbers.
 
 \section{Chapter 12, Exercise D3}
 
@@ -311,7 +310,7 @@ Define a relation $\sim$ as $a \sim b \iff \exists x \in G \ni a = xbx^{-1}$.
 
 \section{The cyclic subgroups of $Z_{12}$}
 
-The following are cyclic subgroups of $Z_{12}$.
+The following are the cyclic subgroups of $Z_{12}$.
 
 \begin{align}
 	\langle 0 \rangle & = \{0\} \text{ (trivial)} \\
@@ -386,7 +385,7 @@ the proof of which is trivial and hence omitted.
 Suppose that $f(x) = x + 1 \in \freals$.
 
 We can describe the elements of $\langle f \rangle$
-as $\langle f \rangle \{ n(x + 1):n \in \ints \}$,
+as $\langle f \rangle = \{ n(x + 1):n \in \ints \}$,
 the proof of which is trivial and hence omitted.
 
 \begin{thm} \label{thm8}
@@ -454,10 +453,10 @@ Let $A \in \gltwo$ such that $A = \glmatrix{a}{(b-a)}{0}{b} \land b \neq 0 \neq 
 	since $\glmatrix{a^n}{(b^n-a^n)}{0}{b^n}\glmatrix{a}{(b-a)}{0}{b}^{-1} =
 	\glmatrix{a^{n-1}}{(b^{n-1}-a^{n-1})}{0}{b^{n-1}}$,
 	so we see that theorem \ref{thm4} holds when $n$ is restricted
-	to be gretaer than $0$.
+	to be greater than $0$.
 
 	Thus we have covered every integer but the additive identity, $0 \in \ints$.
-	We see that $AA^{-1} = 
+	We see that $A^0 = AA^{-1} = 
 	\glmatrix{a^n}{(b^n-a^n)}{0}{b^n} \glmatrix{a^{-1}}{(b^{-1}-a^{-1})}{0}{b^{-1}}
 	= \glmatrix{1}{0}{0}{1}
 	= \glmatrix{a^0}{(b^0-a^0)}{0}{b^0}$
@@ -490,7 +489,7 @@ Suppose $f,g,h \in \freals$.
 Define the relation $\sim$ as:
 
 \begin{align} \label{sim}
-	f \sim g \iff \forall x \in \reals f(x) - g(x) = c \text{ for some } c \in \reals
+	f \sim g \iff (\forall x \in \reals)(f(x) - g(x) = c \text{ for some } c \in \reals)
 \end{align}
 
 \begin{thm} \label{thm5}
@@ -549,7 +548,7 @@ Define the following relation for some $a,b \in X$:
 	so we have that $a \sim a$
 	i.e. $\sim$ is reflexive.
 
-	Then, if we suppose that $a ~ b$,
+	Then, if we suppose that $a \sim b$,
 	we have that some integer $n$ must
 	exist such that $f^n(a) = b$,
 	but since $f$ is bijective, we can apply $f^{-1}$
