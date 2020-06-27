@@ -1,0 +1,226 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Homework \#6}
+\author{Joel Savitz}
+\date{Wednesday 1 July 2020}
+
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 13, Exercise A3}
+
+Suppose $H$ is a subgroup of some group $G$.
+Furthermore, suppose
+$G = \ints_{15} \land H = \langle 5 \rangle$.
+Then,
+denoting $+_{15}$ as $+$,
+the following are the cosets of $H$:
+\begin{align*}
+	H + 0 = & \{0, 5, 10 \} \\
+	H + 1 = & \{1, 6, 11 \} \\
+	H + 2 = & \{2, 7, 12 \} \\
+	H + 3 = & \{3, 8, 13 \} \\
+	H + 4 = & \{4, 9, 14 \}
+\end{align*}
+
+\section{Chapter 13, Exercise A4}
+
+Denote the elements of $D_4$ as:
+
+\begin{align}
+	\label{topperm}
+	R_0 = & \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} &
+	R_{\pi/2} = & \binom{1\ 2\ 3\ 4}{4\ 1\ 2\ 3} &
+	R_{\pi} = & \binom{1\ 2\ 3\ 4}{4\ 2\ 1, 3} &
+	R_{3\pi/2} = & \binom{1\ 2\ 3\ 4}{2\ 3\ 4\ 1} \\
+	\label{botperm}
+	H  = & \binom{1\ 2\ 3\ 4}{4\ 3\ 2, 1} &
+	V  = & \binom{1\ 2\ 3\ 4}{2\ 1\ 4, 3} &
+	D = & \binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	D' = & \binom{1\ 2\ 3\ 4}{1\ 4\ 3\ 2}
+\end{align}
+
+The operation table for
+function composition $\circ$
+on $D_4$
+is given in table \ref{t1}
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llllllll}
+	$\circ$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $H$ & $V$ & $D$ & $D'$	\\ \hline
+	$R_0$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $H$ & $V$ & $D$ & $D'$ \\
+	$R_{\pi/2}$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $R_0$ & $D'$ & $D$ & $H$ & $V$ \\
+	$R_\pi$ & $R_\pi$ & $R_{3\pi/2}$ & $R_0$ & $R_{\pi/2}$ & $V$ & $H$ & $D'$ & $D$ \\
+	$R_{3\pi/2}$ & $R_{3\pi/2}$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $D$ & $D'$ & $V$ & $H$ 	\\
+	$H$ & $H$ & $D$ & $V$ & $D'$ & $R_0$ & $R_\pi$ & $R_{\pi/2}$ & $R_{3\pi/2}$ 	\\
+	$V$ & $V$ & $D'$ & $H$ & $D$ & $R_\pi$ & $R_0$ & $R_{3\pi/2}$ & $R_{\pi/2}$ 	\\
+	$D$ & $D$ & $V$ & $D'$ & $H$ & $R_{3\pi/2}$ & $R_{\pi/2}$ & $R_0$ & $R_\pi$	\\
+	$D'$ & $D'$ & $H$ & $D$ & $V$ & $R_{\pi/2}$ & $R_{3\pi/2}$ & $R_\pi$ & $R_0$	\\
+\end{tabular}
+\centering
+\caption{Operation table for $G$ under $\circ$}
+\label{t1}
+\end{table}
+
+Suppose $H'$ is a subgroup of some group $G$.
+Furthermore, suppose
+$G = D_4 \land H' = \{R_0, D' \}$
+
+
+Then,
+using multiplicative notaiton for $\circ$,
+we have the following cosets of $H'$
+\begin{align*}
+	H'R_0 = & \{ R_0, D' \} \\
+	H'R_{\pi/2} = & \{ R_{\pi/2}, H \} \\
+	H'R_\pi = & \{ R_\pi, D \} \\
+	H'R_{3\pi/2} = & \{ R_{3\pi/2}, V \} \\
+	H'H = & \{ H, R_{\pi/2} \} \\
+	H'V = & \{ V, R_{3\pi/2} \} \\
+	H'D = & \{ D, R_\pi \} \\
+	H'D' = & \{ D', R_0 \} \\
+\end{align*}
+
+% \bibliographystyle{plain}
+% \bibliography{document}
+
+\section{Chapter 13, Exercise B1}
+
+Suppose $H = \langle 3 \rangle$
+where $3 \in \ints$.
+
+Then, we can describe the three cosets of $H$ as follows:
+\begin{align*}
+	H + 0 = & \{x \in \ints:\exists k \in \ints \ni x = 3k \} \\
+	H + 1 = & \{x \in \ints:\exists k \in \ints \ni x = 3k + 1\} \\
+	H + 2 = & \{x \in \ints:\exists k \in \ints \ni x = 3k + 2\}
+\end{align*}
+
+\section{Chapter 13, Exercise C2}
+
+Suppose $G$ is some group
+such that $\ord(G) = pq$
+for some prime natural $p$ and $q$.
+
+\begin{thm} \label{thm1}
+	$G$ is not cyclic if any only if every $x \in G \ni x \neq e \in G$
+	satisfies $\ord(x) = p \lor \ord(x) = q$.
+\end{thm}
+
+\begin{proof}
+	Suppose $G$ is cyclic.
+	Then, some $x \in G$
+	satisfies $\langle x \rangle = G \iff \ord(x) = pq$
+	and we have some $x \in G$
+	where $\ord(x) = p \lor \ord(x) = q$
+	does not hold.
+
+	Conversely,
+	suppose $G$ is not cyclic.
+	Then, let $x$ be some member of $G$
+	where $x \neq e \in G$.
+	By Lagrange's theorem,
+	we must have that $\ord(x)$ divides $\ord(G)$,
+	and so we have that $\ord(x)$ divides $pq$.
+	Then, $\ord(x) \in \{1, p, q, pq\}$.
+	We also have $\big(\ord(x) = 1 \iff x = e\big) \land \ord(x) \neq e\ \implies \ord(x) \neq 1$.
+	And of course $\ord(x) \neq pq$,
+	since otherwise $\langle x \rangle = G$,
+	violating our assumption that $G$ is not cyclic.
+	We have deduced that $\ord(x) = p \lor \ord(x) = q$ holds.
+
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+\section{Chapter 13, Exercise C3}
+
+Suppose $G$ is some group
+where $\ord(G) = 4$.
+
+\begin{thm} \label{thm2}
+	$G$ is not cyclic if and only if every element of $G$ is its own inverse.
+\end{thm}
+
+\begin{proof}
+	Suppose $G$ is cyclic.
+	Then, we have an $x \in G$
+	such that $\langle x \rangle = G$.
+	We can write $G$ as $\{e, x, x^2, x^3 \}$.
+	By inspection we see that $x^2 \neq e$
+	and we have an element of $G$
+	that is not its own inverse,
+	so it is false that every element of $G$
+	is its own inverse when $G$ is cyclic.
+
+	Suppose $G$ is not cyclic.
+	By Lagrange's theorem,
+	the order of every element of $G$
+	must divide the order of $G$,
+	so the non identity elements of $G$
+	must have order $2$ or order $4$.
+	Since $G$ is not cyclic,
+	no element has order $4$,
+	for if it did,
+	that element would generate $G$
+	and $G$ would not be cyclic.
+	Since every $x \in G$
+	satisfies $\ord(x) = 2$,
+	we must have $x^2 = e$
+	for every $x \in G$
+	and then every element of $G$
+	is its own inverse.
+
+	This proves theorem \ref{thm3}.
+\end{proof}
+
+\begin{thm} \label{thm3}
+	Every group of order $4$ is abelian.
+\end{thm}
+
+\begin{proof}
+	Suppose $G$ is not cyclic.
+	Then, by theorem \ref{thm2},
+	we have that every $x \in G$
+	satisfies $x^{-1} = x$.
+	Applying this identity,
+	we find that $ab = a^{-1}b^{-1} = (ba)^{-1} = ba$
+	so any $a,b \in G$ commute
+	and $G$ is abelian.
+
+	Instead, suppose $G$ is cyclic.
+	Then, $G$ has a generator $x$
+	where $G = \{ e, x, x^2, x^3 \}$.
+	Then, we can write any $y \in G$
+	as $y = x^i$ for any $i \in \{0, 1, 2, 3 \}$.
+	If $a = x^\alpha \in G$ and $b = x^\beta$
+	are two such sets,
+	we observe that $ab = x^\alpha x^\beta = x^{\alpha + \beta} = x^{\beta + \alpha} =
+	x^\beta x^\alpha = ba$
+	and see that any two $a,b \in G$
+	commute and $G$ is abelian.
+
+	Since $G$ is abelian if $G$ is cyclic
+	and $G$ is abelian if $G$ is not cyclic,
+	we see by the law of the exluded middle
+	that $G$ is abelian and in general,
+	every group of order $4$ is abelian.
+
+	This proves theorem \ref{thm3}.
+\end{proof}
+
+\end{document}
