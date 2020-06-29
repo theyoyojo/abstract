@@ -6,6 +6,7 @@
 \author{Joel Savitz}
 \date{Wednesday 1 July 2020}
 
+\newcommand{\nats}{\mathbb{N}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\rats}{\mathbb{Q}}
 \newcommand{\ints}{\mathbb{Z}}
@@ -221,6 +222,367 @@ where $\ord(G) = 4$.
 	every group of order $4$ is abelian.
 
 	This proves theorem \ref{thm3}.
+\end{proof}
+
+\section{Chapter 13, Exercise D1}
+
+Suppose $H$ and $K$ are subgroups of a finite group $G$.
+
+\begin{thm} \label{thm4}
+	$H \subseteq K \implies (G:H) = (G:K)(K:H)$
+\end{thm}
+
+\begin{proof}
+	Let $n = \ord(G)$
+	and let $h = \ord(H) \land k = \ord(K)$.
+	Then, by Lagrange's theorem,
+	we must have that $h | n \land k | n$
+	$(G:H) = \frac{\ord(G)}{\ord(H)}$ and
+	$(G:K) = \frac{\ord(G)}{\ord(K)}$
+	Since $H$ is a subgroup of $G$,
+	we must have that
+	$x \in H \implies x^{-1} \in H$
+	and $(\forall x,y \in H)(xy \in H)$.
+	Then, since we have $H \subseteq K$,
+	we must have that $H$ is a subgroup of $K$,
+	and therefore $(K:H) = \frac{\ord(K)}{\ord(H)}$
+	By these identities, we must have:
+	\begin{align}
+		(G:H) = & \frac{\ord(G)}{\ord(H)} \\
+		(G:H) = & \frac{\ord(G)\ord(K)}{\ord(H)\ord(K)} \\
+		(G:H) = & \frac{\ord(G)}{\ord(K)} \frac{\ord(K)}{\ord(H)} \\
+		(G:H) = & (G:K)(K:H)
+	\end{align}
+	This proves theorem \ref{thm4}.
+\end{proof}
+
+\section{Chapter 13, Exercise E1}
+
+Suppose $H$ is a subgroup of some group $G$
+and let $a,b \in G$.
+
+\begin{thm} \label{thm5}
+	$Ha = Hb \iff ab^{-1} \in H$
+\end{thm}
+
+\begin{proof}
+	Suppose $Ha = Hb$.
+	Then, we have $a \in Hb$
+	so there is an $x \in H$ where $xb = a$,
+	but then we can muliply both sides on the right by $b^{-1}$
+	to see that $x = ab^{-1} \in H$.
+
+	Conversely, suppose $ab^{-1} \in H$.
+	Then, $a \in Hb$ since $(ab^{-1})b \in Hb$,
+	but $a \in Hb \iff Ha = Hb$.
+	
+	This proves theorem \ref{thm5}.
+\end{proof}
+
+\section{Chapter 13, Exercise E3}
+
+Suppose $H$ is a subgroup of some group $G$
+and let $a,b \in G$.
+
+\begin{thm} \label{thm6}
+	$aH = Ha \land bH = Hb \implies (ab)H = H(ab)$
+\end{thm}
+
+\begin{proof}
+	Suppose $aH = Ha \land bH = Hb$.
+	If $x \in H$,
+	then we have $xa = ax \land xb = bx$
+	We can isolate the $x$ in each equation
+	by multiplication of the first on the right by $a^{-1}$
+	and multiplication of the second on the right by $b^{-1}$
+	to get the identities $x = axa^{-1} \land x = bxb^{-1}$
+	and substitute an $x$ in the first equation
+	with an equivalent value in the second to get
+	$x = a(bxb^{-1})a^{-1} = (ab)x(ab)^{-1}$.
+	But then we can just multiply on the right by $(ab)$
+	to get $x(ab) = (ab)x$
+	and thus $x \in H(ab) \land x \in (ab)H \iff (ab)H = H(ab)$.
+	This proves theorem \ref{thm6}.
+\end{proof}
+
+\section{The affine group and her little brother}
+
+Suppose $G$ is the affine group
+defined as $G = \Big\{ \glmatrix{a}{b}{0}{1} \in \gltwo: a \neq 0 \Big\}$.
+
+Let $H = \Big\{ \glmatrix{1}{x}{0}{1}: x \in \reals \Big\}$.
+
+\begin{thm} \label{thm7}
+	$H$ is a subgroup of $G$
+\end{thm}
+
+\begin{proof}
+	Suppose $x \in H$.
+	We see that $x_{1,1} \in \reals \ni a \neq 0$
+	and of course that $x_{1,2} \in \reals$,
+	as well as the fact that $x_{2,1} = 0 \land x_{2,2} = 1$,
+	so we conclude that $x \in G$
+	and since $x \in H \implies x \in G$,
+	we have $H \subseteq H$.
+
+	Consider an $x = \glmatrix{1}{p}{0}{1} \in H$
+	and a $y = \glmatrix{1}{q}{0}{1} \in H$
+	Then, $xy = \glmatrix{1}{p + q}{0}{1} \in H$
+	since $p + q \in \reals$
+	and we see that $H$ is
+	closed under matrix multiplication.
+
+	Let $x = \glmatrix{1}{\alpha}{0}{1} \in H$.
+	Then, $x^{-1} = \frac{1}{1\cdot1 - 0 \cdot \alpha}
+	\glmatrix{1}{-\alpha}{0}{1} =
+	\glmatrix{1}{-\alpha}{0}{1}$
+	and clearly $x^{-1} \in H$ since $-\alpha \in \reals$.
+	We also see that $xx^{-1} = x^{-1}x = \glmatrix{1}{0}{0}{1} \in H$.
+
+	Then,
+	since $H$ is
+	a subset of $G$
+	closed under matrix multiplication,
+	where every element $x \in H$
+	has its inverse $x^{-1} \in H$,
+	we conclude that $H$ is a subgroup of $G$.
+	This proves theorem \ref{thm7}.
+\end{proof}
+
+We can describe the right cosets of $H$ 
+for some $a = \glmatrix{a}{b}{0}{1} \in G$
+by $Ha = \Big\{k: k = \glmatrix{a}{b + x}{0}{1} \land k = yk \ni y = \glmatrix{1}{x}{0}{1} \in H \Big\}$.
+
+\section{Cosets of some permutation group}
+
+Suppose $H$ is a sugroup of $G = A_4$, where we can write $A_4$ as:
+\begin{align} \label{a4}
+	\{e, (12)(34), (13)(24),(14)(23),(123),(132),(124),(142),(134),(143),(234),(243)\}
+\end{align}
+
+and we let $H = \{ e, (12)(34), (13)(24),(14)(23) \}$.
+
+We can calculate $(G:H) = \frac{\ord(G)}{\ord(H)} = \frac{12}{4} = 3$.
+
+The three cosets of $H$ with respect to $G$ are:
+
+\begin{align}
+	He = &\ \{e, (12)(34), (13)(24),(14)(23) \} \\
+	H(123) = &\ \{(123), (134), (243), (142) \} \\
+	H(132) = &\ \{(132), (143),(234),(124) \}
+\end{align}
+
+\section{A bunch of proofs}
+
+Suppose $B_1 = \{1, ..., k \}$ and $B_2 = \{k+1, ..., n\}$
+where $k \in \ints \ni 1 \le k \le n -1$ for some $n \in \nats$.
+
+Then, define the following two subgroups of $S_n$:
+\begin{align}
+	G_1 = &\ \{ f \in S_n: (\forall x \in B_1 \cup B_2)
+	(x \in B_1 \implies f(x) \in B_1 \land x \in B_2 \implies f(x) = x) \} \\
+	G_2 = &\ \{ f \in S_n: (\forall x \in B_1 \cup B_2)
+	(x \in B_2 \implies f(x) \in B_2 \land x \in B_1 \implies f(x) = x) \}
+\end{align}
+
+Furthermore, define $H = \{ f \circ g: f \in G_1, g \in G_2 \}$.
+
+\subsection{Elements of $G_1, G_2,$ and $H$, plus $(S_5:H)$}
+
+Consider the concrete case of $S_5$.
+Let $B_1 = \{1, 2\}$ and let $B_2 = \{3, 4, 5\}$.
+Then, we can write the elements of $G_1, G_2,$ and $H$ as follows:
+
+\begin{align*}
+	G_1 = &\ \{e, (12)\} \\
+	G_2 = &\ \{e, (34),(35),(45),(345),(354),\} \\
+	H = &\ \{e, (34),(35),(45),(345),(354), \\
+	    & (12), (12)(34),(12)(35),(12)(45),(12)(345),(12)(354) \}
+\end{align*}
+
+Since $\ord(S_5) = 5! = 120$
+and $\ord(H) = 12$,
+we have $(S_5:H) = \frac{120}{12} = 10$.
+
+\subsection{Proof of $H \le S_n$ in general}
+
+First, I need to prove general commutivity:
+
+\begin{thm} \label{thm9}
+	Any element of $G_1$ commutes with any element of $G_2$ under $\circ$	
+\end{thm}
+
+\begin{proof}
+	Let $f \in G_1$ and let $g \in G_2$.
+	Consider some $x \in B_1 \cup B_2$.
+	We look at the possible values
+	of $(f \circ g)(x) = f(g(x))$.
+	If $x \in B_1$, then $g(x) = x$ and $f(g(x)) = f(x)$,
+	but if $x \in B_2$, then $f(g(x)) = g(x)$.
+	Alternatively,
+	consider the possible values
+	of $(g \circ f)(x) = g(f(x)$.
+	If $x \in B_1$, then $g(f(x)) = f(x)$.
+	but if $x \in B_2$, then $f(x) = x$ and $g(f(x)) = g(x)$.
+	Since $\neg(x \in B_1) \iff (x \in B_2)$,
+	we have that $(f \circ g)(x) = (g \circ f)(x)$
+	for any $f \in G_1$ and $g \in G_2$.
+	This proves theorem \ref{thm9}.
+\end{proof}
+
+Now, I can prove the following theorem:
+
+\begin{thm} \label{thm8}
+	$H$ is a subgroup of $S_n$
+\end{thm}
+
+\begin{proof}
+	Let $x,y \in H$.
+	By definition,
+	we can write each $a \in H$
+	as some $f \circ g \ni f \in G_1 \land g \in G_2$.
+	As such, let $p \in G_1$ and $q \in G_2$ be
+	such that $x = p \circ q$
+	and let $r \in G_2$ and $s \in G_2$ be
+	such that $y = r \circ s$.
+	We can compose these to identities
+	to get $x \circ y = (p \circ q) \circ (r \circ s)$.
+	Then by theorem \ref{thm9} and the associativity of $\circ$,
+	we have $x \circ y = (p \circ r) \circ (q \circ s)$,
+	and since $(p \circ r) \in G_1$ and $(q \circ s) \in G_2$
+	due to the closue of $\circ$ on subgroups $G_1$ and $G_2$,
+	we have that $x \circ y$ is the composition of
+	some element of $G_1$ and some element of $G_1$,
+	and this is exactly the definition of $x \circ y \in H$.
+	Then, $H$ is closed under $\circ$.
+
+	If have $x = p \circ q \in H$,
+	then we must have $x^{-1} = (p \circ q)^{-1} = (q^{-1} \circ p^{-1})$,
+	and this is verified by $x^{-1} = (p \circ q) \circ (q^{-1} \circ q^{-1})$.
+	Thus every $x \in H$ has its inverse $x^{-1} \in H$.
+
+	With this last fact
+	and with the fact that
+	$H$ is closed under $\circ$,
+	we conclude that
+	$H$ is a subgroup of $S_n$
+	and this proves theorem \ref{thm8}.
+\end{proof}
+
+\subsection{Abstract counting}
+
+\begin{thm} \label{thm10}
+	$(S_n:H) = \frac{n!}{k!(n-k)!}$
+\end{thm}
+
+\begin{proof}
+	Since $G_1$ contains permutations
+	on elements of $B_1$ only with all
+	points in $B_2$ fixed and $|B_1| = k$,
+	we have $\ord(G_1) = k!$.
+	Then, since $G_2$ contains permutations
+	on elememts of $B_2$ only with all
+	points in $B_1$ fixed and $|B_2| = n - k$,
+	we have $\ord(G_2) = (n - k)!$.
+	Since we construct $H$
+	by constraining the set to 
+	some $k!$ elements of $G_1$
+	composed with $(n-k)!$
+	elements of $G_2$,
+	where every composition is unique
+	since they are on mutually
+	exclusive intervalds of $\ints$,
+	we have $\ord(G) = k!(n-k)!$.
+	Finally because $\ord(S_n) = n!$,
+	we must have by definition
+	that $(S_n:H) = \frac{n!}{k!(n-k)!}$.
+	This proves theorem \ref{thm10}.
+\end{proof}
+
+\section{A few equivalent propositions}
+
+Suppose $a,b \in H$
+where $H$ is a subgroup,
+of some group $G$.
+
+\begin{thm} \label{thm11}
+	$a \in Hb \iff ab^{-1} \iff Ha = Hb$
+\end{thm}
+
+\begin{proof}
+	By theorem \ref{thm5},
+	we have $ab^{-1} \iff Ha = Hb$.
+	Because $\Big(Ha = Hb \iff (x \in Ha \iff x \in Hb)\Big)$,
+	we must have $Ha = Hb \iff a \in Hb$
+	since clearly $a = ea \iff a \in Ha$.
+	By transitivity and commutivity of bidirective implication,
+	we have $a \in Hb \iff ab^{-1} \iff Ha = Hb$.
+	This proves theorem \ref{thm11}.
+\end{proof}
+
+\section{Normal subgroups}
+
+Define a normal subgroup of $G$ to be some $H$
+such that $h \in H \land a \in G \implies aha^{-1} \in H$.
+
+\begin{thm} \label{thm12}
+	$\Big((\forall a \in H)(aH = Ha)\Big) \implies H \textrm{ is a normal subgroup of } G$.
+\end{thm}
+
+\begin{proof}
+	Suppose that $aH = Ha$
+	for any $a \in G$.
+	Then, let $h$ be some
+	element of $H$.
+	Following our assumption,
+	we must have $ha = ah$,
+	which when each equivalent
+	value is multiplied
+	on the right
+	by $a^{-1}$
+	yields $h = aha^{-1} \in H$.
+	Thus some $h \in H$ and any $a \in G$
+	implies $aha^{-1} \in H$,
+	so $H$ is a normal subgroup of $G$.
+	This proves theorem \ref{thm12}.
+\end{proof}
+
+\section{Index $2$ subgroups are normal}
+
+\begin{thm} \label{thm13}
+	If $H$ is a subgroup of some $G$ where $(G:H) = 2$,
+	then $H$ is a normal subgroup of $G$.
+\end{thm}
+
+\begin{proof}
+	Suppose $H$ is a subgroup of some $G$
+	where $(G:H) = 2$ holds.
+	Let $h$ be some elemenet of $H$
+	and let $a$ be some element of $G$.
+	We have $a \in He = H$
+	if and only if
+	$Ha = He = H$
+	by theorem \ref{thm11}.
+	$a \in aH \iff Ha = aH$,
+	and clearly $ae = a \in aH$,
+	so $aH = Ha$ when $a \in H$.
+	We have $a \not\in He \iff Ha \neq He = H$
+	by theorem \ref{thm11},
+	and then of course $a \not\in eH \iff aH \neq eH = H$.
+	Since there are only two possible cosets of $H$
+	by the fact that $(G:H) = 2$,
+	and by the fact that cosets of $H$
+	are disjoint partitions of the group $G$,
+	we must have $aH \neq H \land Ha \neq H \iff aH = Ha$,
+	so for any $a \in G$, we have $aH = Ha$.
+	Then by theorem \ref{thm12},
+	if we have that any $a \in G$
+	satisfies $aH = Ha$,
+	then $H$ is a normal subgroup of $G$.
+	Since this is indeed the case with our generic
+	subgroup  $H$ where $(G:H) = 2$,
+	we must have $(G:H) = 2 \implies H \textrm{ is a normal subgroup of } G$.
+	This proves theorem \ref{thm13}.
 \end{proof}
 
 \end{document}
