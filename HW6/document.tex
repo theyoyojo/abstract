@@ -47,11 +47,11 @@ Denote the elements of $D_4$ as:
 	\label{topperm}
 	R_0 = & \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} &
 	R_{\pi/2} = & \binom{1\ 2\ 3\ 4}{4\ 1\ 2\ 3} &
-	R_{\pi} = & \binom{1\ 2\ 3\ 4}{4\ 2\ 1, 3} &
+	R_{\pi} = & \binom{1\ 2\ 3\ 4}{3\ 4\ 1\ 2} &
 	R_{3\pi/2} = & \binom{1\ 2\ 3\ 4}{2\ 3\ 4\ 1} \\
 	\label{botperm}
-	H  = & \binom{1\ 2\ 3\ 4}{4\ 3\ 2, 1} &
-	V  = & \binom{1\ 2\ 3\ 4}{2\ 1\ 4, 3} &
+	H  = & \binom{1\ 2\ 3\ 4}{4\ 3\ 2\ 1} &
+	V  = & \binom{1\ 2\ 3\ 4}{2\ 1\ 4\ 3} &
 	D = & \binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
 	D' = & \binom{1\ 2\ 3\ 4}{1\ 4\ 3\ 2}
 \end{align}
@@ -526,7 +526,7 @@ Define a normal subgroup of $G$ to be some $H$
 such that $h \in H \land a \in G \implies aha^{-1} \in H$.
 
 \begin{thm} \label{thm12}
-	$\Big((\forall a \in H)(aH = Ha)\Big) \implies H \textrm{ is a normal subgroup of } G$.
+	$\Big((\forall a \in G)(aH = Ha)\Big) \implies H \textrm{ is a normal subgroup of } G$.
 \end{thm}
 
 \begin{proof}
@@ -557,7 +557,7 @@ such that $h \in H \land a \in G \implies aha^{-1} \in H$.
 \begin{proof}
 	Suppose $H$ is a subgroup of some $G$
 	where $(G:H) = 2$ holds.
-	Let $h$ be some elemenet of $H$
+	Let $h$ be some element of $H$
 	and let $a$ be some element of $G$.
 	We have $a \in He = H$
 	if and only if

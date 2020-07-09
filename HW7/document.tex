@@ -1,0 +1,481 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Homework \#7}
+\author{Joel Savitz}
+\date{Wednesday 8 July 2020}
+
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newcommand{\dreals}{\mathcal{D}(\reals)}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+\maketitle
+
+Note: I use the term ``epimorphism'' defined as a surjective homomorphism.
+This kind of morphism is more relevant to the context of serveral of
+the following proofs than mere homomorphism.
+Every epimorphism is a homomorphism
+so the proofs in question are only stonger
+and should cover a superset of the relevant constraints.
+
+\section{Chapter 14, Exercise A3}
+
+Consider the surjection $f:\ints_{15} \to \ints_5$ defined as follows:
+
+\begin{align*}
+	f: 0 & \mapsto 0 &
+	f: 1 & \mapsto 1 &
+	f: 2 & \mapsto 2 &
+	f: 3 & \mapsto 3 &
+	f: 4 & \mapsto 4 \\
+	f: 5 & \mapsto 0 &
+	f: 6 & \mapsto 1 &
+	f: 7 & \mapsto 2 &
+	f: 8 & \mapsto 3 &
+	f: 9 & \mapsto 4 \\
+	f: 10 & \mapsto 0 &
+	f: 11 & \mapsto 1 &
+	f: 12 & \mapsto 2 &
+	f: 13 & \mapsto 3 &
+	f: 14 & \mapsto 4
+\end{align*}
+
+By inspection,
+we see that $\ker(f) = \{0, 5, 10\}$.
+
+\section{Chapter 14, Exercise B2}
+
+Suppose we have
+the function $\phi: \dreals \to \freals$
+defined by $\phi(f) = \frac{df}{dx}$
+where $x$ is the independent variable of $f$.
+
+\begin{thm} \label{thm1}
+	$\phi$ is an epimomorphism from $\dreals$ to $\freals$
+\end{thm}
+
+\begin{proof}
+	Let $h' \in \freals$ be some arbitrary
+	function where the prime is purely formal
+	notation and does not denote an operation.
+	Since $h'$ is continuous on $\reals$,
+	it is integrable on the entire interval $(-\infty, \infty)$.
+	By the first part of
+	the fundamental theorem of calculus,
+	we have that $h'$ is the derivative
+	of some $h$ with repsect to the limits of integration
+	implied by the integrability of $h'$.
+	Then, denoting the independent variable of $h$ by $x$,
+	we have $\phi(h) = \frac{d}{dx}h = h'$
+	so we see that $\phi$ is surjective.
+
+	Now suppose $f,g \in \dreals$
+	with an independent variable denoted by $x$.
+	By the linearity of
+	the differentiation operation,
+	we have $\phi(f) + \phi(g) =
+	\frac{d}{dx}f + \frac{d}{dx}g =
+	\frac{d}{dx}(f + g) = \phi(f + g) \in \freals$.
+	Since $\phi$ has this property,
+	it is a homomorphism.
+	Furthermore, since $\phi$ is surjectve,
+	it is an epimorphism.
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+We can describe the kernel of $\phi$ as
+$\ker(\phi) = \reals \subseteq \dreals$,
+since any constant function has a real zero derivative everywhere.
+
+\section{Chapter 14, Exercise B4}
+
+Suppose we have
+the function $f:\reals^* \to \reals^{pos}$
+defined by $f(x) = |x|$.
+Note that the group operation
+for both the domain and codomain of $f$
+is good old real multiplication.
+
+\begin{thm} \label{thm2}
+	$f$ is an epimorphism from $\reals^*$ to $\reals^{pos}$.
+\end{thm}
+
+\begin{proof}
+	Suppose $x,y \in \reals^*.$
+	Then we see$f(x) \cdot f(y) = |x| \cdot |y| = |x \cdot y| = f(xy)$,
+	so $f$ is a homomorphism.
+	Now, consider some $a \in \reals^{pos}$.
+	At least one of $f(a) = a$ or $f(-a) = a$ hold since they both hold,
+	so $f$ is surjective.
+	Then, $f$ is a surjective homomorphism
+	if and only if
+	$f$ is an epimorphism.
+	This proves theorem \ref{thm2}
+\end{proof}
+
+We can write the kernel of $f$ as
+$\ker(f) = \{ -1, 1\}$ since $|-1| = |1| = 1$
+and $(\forall x \in \reals^{pos})(1x = x1 = x)$.
+
+\section{Chapter 14, Exercise C2}
+
+Suppose $f:G \to H$ is a homomorphism
+and $\ker(f) = K$.
+
+\begin{thm} \label{thm3}
+	$f$ is injective if and only if $K = \{ e_G \}$
+\end{thm}
+
+\begin{proof}
+	Suppose $f$ is injective.
+	Then, any $x,y \in G$
+	satisfy $f(x) = f(y) \implies x = y$.
+	By definition of homomorphism, $f(e_G) = e_H$,
+	so at the very least, $e_G \in K$.
+	Suppose some other $x \in G$ satisfies $f(x) = e$.
+	Then, $x = e_G$ by the reasoning previously elucidated.
+	Therefore the cardinality of $K$ is $1$ and 
+	$\ker(f)$ is the singleton $K = \{ e_G \}$.
+
+	Conversely, suppose that $f$ is not injective.
+	This means we must have some $x,y \in G$ where
+	$f(x) = f(y) \implies x = y$ does not hold.
+	
+	Suppose $x,y \in G$ where $x \neq y$ satisfies $f(x) = f(y)$.
+	Then, $f(x)[f(y)]^{-1} = e_H$,
+	so $f(x)f(y^{-1}) = f(xy^{-1}) = e_H \iff xy^{-1} \in \ker(f)$.
+	We have yet to confirm that the cardinality of $K$ exceeds
+	the singleton $K$ seen above. To determine this property,
+	consider the proposition $xy^{-1} = e_G$ as an assmption.
+	We have $xy^{-1} = e_G \iff x = y$ by multiplication
+	on the right by $y$, but by assumption, $x \neq y$,
+	so we reach a contradiction and conclude that our assumption
+	must be false,
+	and as such, by the law of the excluded middle,
+	we have $xy^{-1} \neq e_G$,
+	and as such $\ker(f) = K \neq \{ e_G \}$ by violation
+	of the axiom of extentionality.
+
+	Since both the implication that
+	if $f$ is injective
+	then $K = \{ e_G \}$ holds
+	and its converse holds,
+	we must have the bidirective implication
+	specified by theorem \ref{thm3},
+	which proves the theorem.
+\end{proof}
+
+\section{Chapter 14, Exercise C4}
+
+Suppose $f: G \to H$ is a homomorphism
+and $J$ is some subgroup of $H$.
+
+\begin{thm} \label{thm4}
+	$f^{-1}(J) = \{ x \in G: f(x) \in J \}$ is a subgroup of $G$
+	and $\ker(f) \subseteq f^{-1}(J)$
+\end{thm}
+
+\begin{proof}
+	Suppose some $x,y \in G$ such that $f(x) \in J \land f(y) \in J$.
+	Then, $f(x)f(y) = f(xy)$ since $f$ is a homomorphism
+	and $f(xy) \in J$ since the group operation is closed
+	in any subgroup, therefore $xy \in f^{-1}(J)$ by definition.
+	Furthermore, since $e_H \in J$ by definition of subgroup,
+	we must have that any $x \in G$ where $f(x) = e_H \in J$
+	satisfies $x \in f^{-1}(J)$ by definition,
+	therefore $x \in \ker(f) \implies x \in f^{-1}(J)$,
+	so $\ker(f) \subseteq f^{-1}(J)$ holds
+	and this proves theorem \ref{thm4}.
+\end{proof}
+
+\section{Chapter 15, Exercise D1}
+
+\textbf{(a) Consider $S_3$.}
+
+We have the following normal subgroups of $S_3$:
+
+$\{e\}$ and $\{e, (123), (132) \}$ and $S_3$,
+the first and last are trivial and the second
+is by the fact that it has index $2$ with respect to $S_3$.
+
+\textbf{(b) Consider $D_4$.}
+
+Denote the elements of $D_4$ as:
+
+\begin{align}
+	\label{topperm}
+	e = R_0 = & \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} &
+	R_{\pi/2} = & \binom{1\ 2\ 3\ 4}{4\ 1\ 2\ 3} &
+	R_{\pi} = & \binom{1\ 2\ 3\ 4}{3\ 4\ 1\ 2} &
+	R_{3\pi/2} = & \binom{1\ 2\ 3\ 4}{2\ 3\ 4\ 1} \\
+	\label{botperm}
+	H  = & \binom{1\ 2\ 3\ 4}{4\ 3\ 2\ 1} &
+	V  = & \binom{1\ 2\ 3\ 4}{2\ 1\ 4\ 3} &
+	D = & \binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	D' = & \binom{1\ 2\ 3\ 4}{1\ 4\ 3\ 2}
+\end{align}
+
+We have the following normal subgroups of $D_4$:
+
+\begin{itemize}
+	\item $\{e\} = \{R_0\}$ 
+	\item $\{R_0, R_\pi \}$ 
+	\item $\{R_0, R_{\pi/2}, R_{\pi}, R_{3\pi/2} \}$ 
+	\item $\{R_0, R_\pi, V, H\}$
+	\item $\{R_0, R_\pi, D, D' \}$
+	\item $D_4$
+\end{itemize}
+
+The first and last are trivial,
+the second is by the fact that it is abelian,
+and the rest are by the fact of the subgroups being of index $2$
+with respect to $D_4$
+
+\section{Chapter 14, Exercise D3}
+
+\begin{thm} \label{thm5}
+	The center of any group $G$ is a normal subgroup of $G$,
+	i.e. $Z(G) \trianglelefteq G$
+\end{thm}
+
+\begin{proof}
+	By the result of Homework 2 problem 12,
+	we have that $Z(G)$ is a subgroup of $G$.
+	Then, since $Z(G)$ satisfies $(\forall x\in Z(G))(\forall y \in G)(xy = yx)$,
+	and by multiplication on the right by $y^{-1}$,
+	we see that $x = yxy^{-1} \in Z(G)$ for any $y \in G$,
+	so $Z(G)$ is a normal subgroup of $G$.
+	This proves theorem \ref{thm5}.
+\end{proof}
+
+\section{Abelian group endomorphism}
+
+\begin{thm} \label{thm6}
+	$G$ is an Abelian group
+	if and only if
+	$f:G \to G \ni f(x) = x^{-1}$ is a homomorphism.
+\end{thm}
+
+\begin{proof}
+	Suppose $G$ is an Abelian group.
+	Then, any $x,y \in G$ satisfies $xy = yx$,
+	so we must have $f(xy) = f(yx) = (xy)^{-1} = (yx)^{-1} = x^{-1}y^{-1} = f(x)f(y)$,
+	so $G$ is a homomorphism.
+
+	Conversely, suppose $f$ is a homomorphism.
+	Then, any $x,y \in G$ satisfies $f(x)f(y) = f(xy)$,
+	so we must have $f(x)f(y) = x^{-1}y^{-1} = (yx)^{-1} = y^{-1}x^{-1} = (xy)^{-1} = f(xy)$,
+	and of course $(yx)^{-1} = (xy)^{-1} \iff yx = xy$.
+
+	Then, $G$ is an abelian group
+	if and only if
+	$f$ is a homomorphism.
+	This proves theorem \ref{thm6}.
+\end{proof}
+
+Since $f$ is a homomorphism from $G$ to itself,
+$f$ is an endomorphism.
+
+\section{Homomorphism via determinant}
+
+Define $\phi: \gltwo \to \reals^* \ni \phi(x) = \det(x)$.
+
+\begin{thm} \label{thm7}
+	$\phi$ is a homomorphism
+\end{thm}
+
+\begin{proof}
+	Since any two $A,B \in \gltwo$ satisfy
+	$\phi(x)\phi(y) = \det(x)\det(y) = \det(xy) = \phi(xy)$
+	by the properties of the determinant of a matrix,
+	we have that $\phi$ is a homomorphism.
+	This proves theorem \ref{thm7}.
+\end{proof}
+
+We can describe the kernel of $\phi$ by
+$\ker(\phi) = \{ x \in \gltwo: \det(x) = 1 \}$,
+otherwise known as the special linear group commonly denoted $SL_2(\reals)$.
+
+\section{A normal subgroup of $\gltwo$}
+
+\begin{thm} \label{thm8}
+	$H = \{ X \in \gltwo: \det(X) > 0 \}$ is a normal subgroup of $\gltwo$,
+	i.e. $H \trianglelefteq \gltwo$.
+\end{thm}
+
+\begin{proof}
+	Suppose $A,B \in H$.
+	Consider that $\det(AB) = \det(A)\det(B) > 0$
+	as well as $\det(B)\det(A) = \det(BA) > 0$,
+	since both $\det(A)$ and $\det(B)$ are positive by definition of $H$.
+	Then, $AB \in H \iff BA \in H$ since the original choice of matrices was arbitrary,
+	and $H$ is closed under matrix multiplication.
+	Since $\det(A^{-1}) = \det(A)^{-1}$, we have $\det(A) > 0 \iff \det(A^{-1}) > 0$
+	so every matrix $A$ in $H$ has its inverse $A^{-1}$ in $H$ and
+	we see that $H$ is a subgroup of $G$.
+	Finally, we have $\Big((H < G) \land (AB \in H \iff BA \in H)\Big) \iff H \trianglelefteq \gltwo$.
+	This proves theorem \ref{thm8}.
+\end{proof}
+
+\section{Another normal subgroup of $\gltwo$}
+
+\begin{thm} \label{thm9}
+	$H = \{ X \in \gltwo: X = xI \ni x \in \reals^*\}$ is a normal subgroup of $\gltwo$,
+	i.e. $H \trianglelefteq \gltwo$.
+\end{thm}
+
+\begin{proof}
+	Suppose we have some $X \in H$ where $X = xI \ni x \in \reals^*$.
+	Then consider any $A \in \gltwo$.
+	Since any scalar commutes with any matrix,
+	we have $AXA^{-1} = AxIA^{-1} = xAIA^{-1} = xAA^{-1} = xI = X \in H$,
+	so any $X \in H$ has it's congugate with any $A \in G$ in the set
+	$H$ since the conjugate is simply $X$ itself,
+	thus $(X \in H \land A \in \gltwo \implies AXA^{-1} \in H) \iff H \trianglelefteq \gltwo$.
+	This proves theorem \ref{thm9}.
+\end{proof}
+
+\section{A demonstration of $A_4 \trianglelefteq S_4$}
+
+\begin{thm} \label{thm10}
+	$A_4 \trianglelefteq S_4$
+\end{thm}
+
+\begin{proof}
+	Since every permutation in $A_4$ is even by definition
+	and an odd permutation composed with an even permuation is odd,
+	the coset of $A_4$ generated by any odd permutation on $S_4$
+	contains only odd permutations.
+	Since every every permutation is either even or odd,
+	we can comfortably conclude that there is only one coset of $A_4$ other than $A_4$ itself.
+	Then, we see that $A_4$ has index $2$,
+	so by the result of Homework 6 problem 14,
+	$A_4$ must be a normal subgroup of $S_4$, i.e. $A_4 \trianglelefteq S_4$.
+	This proves theorem \ref{thm10}.
+\end{proof}
+
+\section{A normal and a non normal subgroup}
+
+Suppose $K = \{ e, (12)(34) \}$ and $H = \{e, (12)(34), (13)(24), (14)(23) \}$
+are subgroups of $S_4$.
+
+Let $a \not\trianglelefteq b$ denote the proposition $\neg(a \trianglelefteq b)$.
+
+\begin{thm} \label{thm11}
+	$K \trianglelefteq H \land K \not\trianglelefteq S_4$
+\end{thm}
+
+\begin{proof}
+	By the counterexample $(13) \circ (12)(32) \circ (13) = (14)(23) \not\in K$,
+	we clearly must have $K \not\trianglelefteq S_4$.
+	Since every element of $K$ is in $H$, we have $K \subseteq H$,
+	and since $(12)(34) \circ (12)(34) = e$ and $ee = e$,
+	every element in $K$ has its inverse in $K$ and $K$ is closed
+	under the group operation, so $K$ is a subgroup of $H$.
+	Furthermore, $K$ is clearly of index $2$ with respect to $H$
+	since it has one non-trivial coset,
+	therefore by the result of Homework 6 problem 14,
+	$K$ is a normal subgroup of $H$,
+	therefore we have
+	$K \trianglelefteq H \land K \not\trianglelefteq S_4$.
+	This proves theorem \ref{thm11}.
+\end{proof}
+
+\section{Amazing Automorphisms And Analysis}
+
+The automorphism of a group $G$ is the set of all isomorphisms from $G$ to itself,
+foramlly: $\Aut(G) = \{ f \in S_G: f(ab) = f(a)f(b) \}$.
+
+\medskip
+\noindent
+\textbf{(a) Conjugation is a homomorphism}
+
+Let $G$ be a group.
+Define $\pi_a: G \to G$ as $\pi_a(x) = axa^{-1}$ for some $a \in G$.
+
+\begin{thm} \label{thm12}
+	$\phi: G \to \Aut(G) \ni \phi(a) = \pi_a$ is a homomorphism.
+\end{thm}
+
+\begin{proof}
+	Suppose $a,b \in G$.
+	Then, consider $f(a)f(b) = \pi_a \circ \pi_b$.
+	For an arbitrary $x \in G$,
+	we see that $(\pi_a \circ \pi_b)(x) = a(bxb^{-1})a^{-1} = (ab)x(ab)^{-1}$.
+	Then, since $f(ab) = \pi_{ab}$, we have $\pi_{ab}(x) = (ab)x(ab)^{-1}$.
+	Thus, $f(ab) = f(a)f(b)$ so $f$ is a homomorphism.
+\end{proof}
+
+\medskip
+\noindent
+\textbf{(b) A normal subgroup of $\Aut(G)$}
+
+Define $H = \{\pi_a \in \Aut(G): \pi_a(x) = ax^{-1} \ni a \in G \}$
+
+\begin{thm} \label{thm13}
+	$H \trianglelefteq \Aut(G)$
+\end{thm}
+
+\begin{proof}
+	Suppose $\pi_a, \pi_b \in H$ and suppose $f \in \Aut(G)$.
+	As demonstrated in the above proof, $\pi_a \circ \pi_b = \pi_{ab} \in H$,
+	so $H$ is closed under the group operation.
+	Of course, we can always find a $\pi_{a^{-1}} \in H$
+	such that $(\pi_a \circ \pi_{a^{-1}})(x) = aa^{-1}x(aa^{-1})^{-1} = x$,
+	so every element in $H$ has its inverse in $H$
+	and we see that $H$ is a subgroup of $\Aut(G)$.
+
+	Consider that $\pi_a(x) = axa^{-1}$ is simply the composition
+	of permutations on $G$ denoted $a,x$ and $a^{-1}$ ---
+	we can consider $x$ a permutation since it is in fact $\epsilon \in \Aut(G)$ ---
+	and that $f$ and its inverse $f^{-1}$ are permutations as well
+	since they are bijections from a set to itself.
+	Then, we can multiply our first identity
+	on the left by $f$
+	and on the right by $f^{-1}$
+	to get $f\pi_a(x)f^{-1} = f(axa^{-1})f^{-1} = (fa)x(fa)^{-1} = \pi_{fa} \in H$
+	since $(fa)$ is some bijection from $G$ to itself, an element of $\Aut(G)$.
+	Then, $\Big(z \in H \land f \in \Aut(G) \implies (fzf^{-1}) \in H\Big) \iff H \trianglelefteq \Aut(G)$.
+	This proves theorem \ref{thm13}.
+\end{proof}
+
+\medskip
+\noindent
+\textbf{(c) The kernel of $\phi$}
+
+\begin{thm} \label{thm14}
+	$\ker(\phi) = \{ a \in G: ax = xa \ni a \in G \}$
+\end{thm}
+
+Denote the identity of $\Aut(G)$ by $\epsilon$
+\begin{proof}
+	Let $x \in G$ and consider the function $\epsilon$.
+	We have $\epsilon(x) = x$ by definition.
+	Since $\phi(a) = \pi_a$ for some $a \in G$,
+	we can only satisfy $\pi_a(x) = \epsilon(x) = x$ when $axa^{-1} = x$.
+	Then multiplication of this last identity
+	by $a$ on the right yields $ax = xa$.
+	We can generalize that for any $a \in G$, we have $\phi(a) = \epsilon \implies ax = xa$.
+	In fact, we see that if we assume instead for any $a \in G \land x \in G$
+	that $ax = xa$, we see that $x = axa^{-1} = \pi_a(x) = \epsilon(x) = \phi(a)(x)$,
+	so we have the bidirective implication $\phi(a) = \epsilon \iff ax = xa$ for any $x \in G$.
+	We can rewrite this fact as $\ker(\phi) = \{a \in G: ax = xa \ni a \in G \}$
+	since this indeed satisfies the definition of kernel of a homomorphism.
+	This proves theorem \ref{thm14}.
+\end{proof}
+
+\end{document}
