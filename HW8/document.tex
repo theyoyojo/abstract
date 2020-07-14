@@ -1,0 +1,238 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Homework \#8}
+\author{Joel Savitz}
+\date{Wednesday 15 July 2020}
+
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newcommand{\dreals}{\mathcal{D}(\reals)}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 15, Exercise A1}
+
+Suppose $G = \ints_{10} \land H = \{ 0, 5 \}$.
+
+Then, table \ref{t1} describes the operation table for $G/H$ with respect to coset multiplication defined for cosets of an abelian group, denoted $*$.
+
+I exclusively use multiplicative notation here because I like it better, but $aH \ni a \in G$ denotes the coset $a +_{10} H$.
+Since $G$ is abelian, I use left and right cosets interchangably.
+
+The following are the elements of $G/H$:
+
+\begin{align*}
+	H0 = & \{ 0, 5 \} \\
+	H1 = & \{ 1, 6 \} \\
+	H2 = & \{ 2, 7 \} \\
+	H3 = & \{ 3, 8 \} \\
+	H4 = & \{ 4, 9 \}
+\end{align*}
+
+\begin{table}[!ht] 
+\begin{tabular}{l|lllll}
+	$*$ & $H0$ & $H1$ & $H2$ & $H3$ & $H4$	\\ \hline
+	$H0$ & $H0$ & $H1$ & $H2$ & $H3$ & $H4$	\\
+	$H1$ & $H1$ & $H2$ & $H3$ & $H4$ & $H0$	\\
+	$H2$ & $H2$ & $H3$ & $H4$ & $H0$ & $H1$	\\
+	$H3$ & $H3$ & $H4$ & $H0$ & $H1$ & $H2$	\\
+	$H4$ & $H4$ & $H0$ & $H1$ & $H2$ & $H3$	\\
+\end{tabular}
+\centering
+\caption{Operation table for $G/H$ under $*$}
+\label{t1}
+\end{table}
+
+If we replace each $HX$ in the table with an $f(HX)$ where $f:G/H \to \ints_5 \ni f(HX) = X$ and replace $*$ by $+_5$,
+we construct the operation table for $\ints_5$. By table inspection, this $f$ is an isomorphism from $G/H$ to $\ints_5$,
+so clearly $G/H \cong \ints_5$.
+
+\section{Chapter 15, Exercise A4}
+
+Denote the elements of $D_4$ as:
+
+\begin{align}
+	\label{topperm}
+	R_0 = & \binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} &
+	R_{\pi/2} = & \binom{1\ 2\ 3\ 4}{4\ 1\ 2\ 3} &
+	R_{\pi} = & \binom{1\ 2\ 3\ 4}{3\ 4\ 1\ 2} &
+	R_{3\pi/2} = & \binom{1\ 2\ 3\ 4}{2\ 3\ 4\ 1} \\
+	\label{botperm}
+	H  = & \binom{1\ 2\ 3\ 4}{4\ 3\ 2\ 1} &
+	V  = & \binom{1\ 2\ 3\ 4}{2\ 1\ 4\ 3} &
+	D = & \binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	D' = & \binom{1\ 2\ 3\ 4}{1\ 4\ 3\ 2}
+\end{align}
+
+The operation table for
+function composition $\circ$
+on $D_4$
+is given in table \ref{t1}
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llllllll}
+	$\circ$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $H$ & $V$ & $D$ & $D'$	\\ \hline
+	$R_0$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $H$ & $V$ & $D$ & $D'$ \\
+	$R_{\pi/2}$ & $R_{\pi/2}$ & $R_\pi$ & $R_{3\pi/2}$ & $R_0$ & $D'$ & $D$ & $H$ & $V$ \\
+	$R_\pi$ & $R_\pi$ & $R_{3\pi/2}$ & $R_0$ & $R_{\pi/2}$ & $V$ & $H$ & $D'$ & $D$ \\
+	$R_{3\pi/2}$ & $R_{3\pi/2}$ & $R_0$ & $R_{\pi/2}$ & $R_\pi$ & $D$ & $D'$ & $V$ & $H$ 	\\
+	$H$ & $H$ & $D$ & $V$ & $D'$ & $R_0$ & $R_\pi$ & $R_{\pi/2}$ & $R_{3\pi/2}$ 	\\
+	$V$ & $V$ & $D'$ & $H$ & $D$ & $R_\pi$ & $R_0$ & $R_{3\pi/2}$ & $R_{\pi/2}$ 	\\
+	$D$ & $D$ & $V$ & $D'$ & $H$ & $R_{3\pi/2}$ & $R_{\pi/2}$ & $R_0$ & $R_\pi$	\\
+	$D'$ & $D'$ & $H$ & $D$ & $V$ & $R_{\pi/2}$ & $R_{3\pi/2}$ & $R_\pi$ & $R_0$	\\
+\end{tabular}
+\centering
+\caption{Operation table for $D_4$ under $\circ$}
+\label{t2}
+\end{table}
+
+Now that we have better notation than Pinter,
+let $G = D_4 \land H \le G \ni H = \{ R_0, R_\pi, H, V \}$
+
+Note that other than $H$, $G/H$ contains only one other element since $(G:H) = 2$.
+
+We can then fully describe $G/H = \Big\{ \{ R_0, R_\pi, H, V \}, \{R_{\pi/2}, R_{3\pi/2}, D, D' \} \Big\}$.
+
+Table \ref{t3} give the operation table for $G/H$ under coset multiplication:
+
+\begin{table}[!ht]
+	\begin{tabular}{l|ll}
+		$*$ & $H$ & $HD$ \\ \hline
+		$H$ & $H$ & $HD$ \\
+		$HD$ & $HD$ & $H$
+	\end{tabular}
+	\centering
+	\caption{Operation table for $G/H$ under coset multiplication}
+	\label{t3}
+\end{table}
+
+\section{Chapter 15, Exercise C1}
+
+Suppose $H \trianglelefteq G$ where $G$ is a group.
+
+\begin{thm} \label{thm1}
+	$(\forall x \in G)(x^2 \in H) \iff (\forall X \in G/H)(X^2 = H)$
+\end{thm}
+
+\begin{proof}
+	Suppose that $(\forall x \in G)(x^2 \in H)$.
+	Let $X \in G/H$. Then, $X = Hx \ni x \in G$.
+	Therefore, $XX = (Hx)(Hx) = H(x^2) = H$
+	since $x^2 \in H \implies h(x^2) \in H$ for any $h \in H$
+	since $H$ is closed under the group operation.
+	Then, $(\forall X \in G/H)(X^2 = H)$.
+
+	Conversely, suppose $(\forall X \in G/H)(X^2 = H)$.
+	Let $x \in G$ and let $X = Hx$.
+	Then, $X^2 = = (Hx)(Hx) = Hx^2$.
+	By assumption, $X^2 = Hx^2 = H$,
+	and by Pinter chapter 15 theorem 5 part 2,
+	we have $Hx^2 = H \iff x^2 \in H$.
+
+	The first implication and its converse thus proved
+	demostrates bidirecitonal implication.
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+\section{Chapter 15, Exercise D1}
+
+Suppose $H \trianglelefteq G$ where $G$ is a group.
+
+\begin{thm} \label{thm2}
+	$|H| \in \nats \land |G/H| \in \nats \implies |G| \in \nats$
+\end{thm}
+
+\begin{proof}
+	Let $n = |H| \in \nats$ and let $m = |G/H|$.
+	Since $G/H$ is the set of all left cosets of $H$ with respect to $G$,
+	we can write $|G/H|$ as $(G:H)$, the index of $H$ with respect to $G$.
+	By Lagrange's theorem, we have $|G| = (G:H) \cdot |H| = mn$.
+	Since $m,n \in \nats$ and the naturals are closed under multiplication,
+	we must have $|G| \in \nats$.
+	This proves theorem \ref{thm2}.
+\end{proof}
+
+\section{Chapter 15, Exercise E2}
+
+Suppose $H \trianglelefteq G$ where $G$ is a group.
+
+\begin{thm} \label{thm3}
+	$m = (G:H) \implies (\forall x \in G/H)( \ord(x) | m )$
+\end{thm}
+
+\begin{proof}
+	Suppose $m = (G:H)$.
+	Then, since $(G:H) = |G/H|$,
+	we have as a consequence of
+	Lagrange's theorem that
+	$(\forall x \in G/H)(\ord(x)\ |\ |G/H|)$,
+	therefore $(\forall x \in G/H)(\ord(x) | m)$.
+	This proves theorem \ref{thm3}.
+\end{proof}
+
+\section{Chapter 15, Exercise E5}
+
+Suppose $H \trianglelefteq G$ where $G$ is a group.
+
+\begin{thm} \label{thm4}
+	$m = (G:H) \implies a^m \in G$ for any $a \in G$
+\end{thm}
+\begin{proof}
+	Suppose $m = (G:H)$ and
+	let $a \in G$.
+	Then, $a^m \in G$ since $G$ is
+	closed under multiplication.
+	This proves theorem \ref{thm4} for some reason.
+\end{proof}
+
+\section{Chapter 15, Exercise E6}
+
+Suppose $H \trianglelefteq G$ where $G$ is a group.
+
+\begin{thm} \label{thm5}
+	$(\forall x \in \rats / \ints)(\ord(x) \in \nats)$
+\end{thm}
+
+\begin{proof}
+	Suppose $x \in \rats / \ints$.
+	Then $x$ can be written as
+	some unique $y + \ints$,
+	where $y \in \rats$.
+	Then, we can write $y = \frac{m}{n}$
+	for some $m,n \in \ints$
+	by the definition of $\rats$.
+	We want to find an $n \in \nats$
+	such that $n(y + \ints) = \ints$.
+	Any $n(y + \ints)$ is just $(ny + \ints)$,
+	however this $n$ is no aribtrary integer,
+	it is in fact the same $n$ we see in
+	the denominator of $y = \frac{m}{n}$,
+	for then $(ny + \ints) = (n\frac{m}{n} = \ints) = (m + \ints)$,
+	and since $m \in \ints$, we have $m + \ints = \ints$,
+	and every $x \in \rats / \ints$ satisfies $n(y + \ints) = \ints$
+	for any $y = \frac{m}{n} \in \rats$,
+	therefore $\ord(x) = n \in \nats$.
+	This proves theorem \ref{thm5}.
+\end{proof}
+
+%\begin{thm} \label{thm4}
+%\end{thm}
+%\begin{proof}
+%\end{proof}
+
+\end{document}
