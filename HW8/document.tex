@@ -346,7 +346,7 @@ Let $H = \ker(\phi)$ and define the relation $\sim$ as:
 	the independent variable of the two functions.
 	This is exactly the definition that $f \sim g$,
 	so we have $g \in [f]$,
-	and by the axiom of extensionality
+	and by the axiom of extentionality
 	we must have $f + H = \{g \in \dreals: g = f + c \ni c \in \reals\}$
 	for any $f \in \dreals$. This proves theorem \ref{thm8}.
 \end{proof}
@@ -397,9 +397,206 @@ Suppose $G = \gltwo$ and $H = \{ X \in G: \det(X) = 1 \} = \sltwo$ be a subgroup
 	that is to say, $H \trianglelefteq G$ and this proves theorem \ref{thm10}.
 \end{proof}
 
-%\begin{thm} \label{thm4}
-%\end{thm}
-%\begin{proof}
-%\end{proof}
+We can describe $G/H$
+by $G/H =  \{X:X=Y\cdot\sltwo\ni Y\in \gltwo\}$.
+
+\section{Another look at $\gltwo$}
+
+Suppose $G = \gltwo$ and $H = \{X \in \gltwo: \det(X) > 0$.
+
+Define $\phi:G \to P$ where $P = \{-1,1\}$ and for any $X \in \gltwo$,
+we have $\phi(X) = \begin{cases} 1 & \textrm{ if } \det(X) > 0 \\
+				-1 & \textrm{ if } \det(X) < 0 \end{cases}$.
+
+Table \ref{t5} gives the operation table
+for the parity group $P$
+under multiplication.
+
+\begin{table}[!ht]
+	\begin{tabular}{l|ll}
+		$*$ & $1$ & $-1$ \\ \hline
+		$1$ & $1$ & $-1$ \\
+		$-1$ & $-1$ & $1$
+	\end{tabular}
+	\centering
+	\caption{Operation table for $P$ under mulitplication denoted by $*$}
+	\label{t5}
+\end{table}
+
+\begin{thm} \label{thm11}
+	$H \trianglelefteq G$
+\end{thm}
+
+\begin{proof}
+	Supppose $X \in \gltwo$.
+	By definition of $\gltwo$,
+	$\det(X) \neq 0$,
+	so we must have either
+	$\det(X) > 0$
+	or $\det(X) < 0$.
+
+	We start with $X \in H \iff \det(X) > 0$,
+	then $\phi(X) = 1$,
+	and $X \in \ker(\phi)$.
+	so $\det(X) > 0 \implies X \in \ker(\phi)$.
+
+	Alternatively,
+	if we start with $X \not\in H \iff \det(X) < 0$, 
+	then $\phi(X) = -1$,
+	and $X \not\in \ker(\phi)$
+	so $\det(X) < 0 \implies X \not\in \ker(\phi)$.
+	Since either $X \in H \lor X \not\in H$,
+	we have that $\det(X) > 0 \iff X \in H$
+	fully describes $\ker(\phi)$,
+	so $X \in H \iff X \in \ker(\phi)$.
+
+	Introduce another aribtrary $Y \in \gltwo$.
+	Then, $\det(X)\det(Y) = \det(XY) > 0$
+	so $\phi(XY) = \phi(X)\phi(Y)$,
+	and $\phi$ is a homomorphism.
+
+
+	Since $H$ is the kernel of a homomorphism
+	from its group to some other group,
+	$H$ must be a normal subgroup of $G$,
+	i.e. $H \trianglelefteq G$.
+	This proves theorem \ref{thm11}.
+\end{proof}
+
+Now we consider $G/H$.
+
+
+\begin{thm} \label{thm12}
+	$G/H = \{H, AH\}$ for some $A \in G \ni A \not\in H$.
+\end{thm}
+
+\begin{proof}
+We first see that of course $e \in H \implies eH = H \in G/H$.
+then, any $x \in H$ satisfies $aH = H$.
+Suppose we have some $A \in G \not\in H \iff \det(A) < 0$.
+We see that $AH \neq H$ since $A \not\in H$, so $AH \in G/H$.
+Then, define $\psi:G/H \to P$ by $\psi(AH) = \phi(A)$ for any $A \in G$.
+Since for any $AH, BH \in G/H$,
+we have $\psi(AH)\psi(BH) = \phi(A)\phi(B) = \phi(AB) = \psi((AB))$,
+$\psi$ is a homomorphism.
+
+Suppose $\psi(AH) = \psi(BH)$.
+Then, $\phi(A) = \phi(B)$,
+so $\det(A) > 0 \iff \det(B) > 0$,
+which means $A \in XH \iff B \in HX$
+for any $X \in \gltwo$.
+And since $A \in XH \iff AH = XH$
+as well as $B \in XH \iff BH = XH$,
+we have $AH = BH$,
+so $\psi$ is injective.
+
+Suppose $x \in P$.
+Then, either $x = 1 \lor x = -1$.
+Suppose $A \in G \ni \det(A) > 0$.
+Then, $\psi(AH) = 1$.
+Suppose $B \in G \ni \det(B) < 0$.
+Then, $\psi(BH) = -1$.
+For every element $x$ of $P$,
+we can find an element $X$ of $G/H$
+such that $\phi(X) = x$,
+so by exhaustion,
+$\psi$ is surijecive.
+
+Since $\psi$ is injective and surjective,
+$\psi$ is an isomorphism so its
+domain and codomain
+must have the same cardinality.
+By inspection, we have $|P| = 2 \iff |G/H| = 2$.
+Above, we saw that $H \in G/H$
+and that $\exists A \in G$
+where $AH \neq H$ holds,
+so $\{H, AH\} \subseteq G/H$.
+But since $|G/H| = 2$,
+this must fully describe $G/H$
+and $G/H \subseteq \{ H, AH \}$,
+so $G/H = \{H, AH\}$
+for some $A \in G \ni A \not\in H$
+by the axiom of extentionality.
+This proves theorem \ref{thm12}.
+\end{proof}
+
+\section{Quotient of a Group by Its Center}
+
+Suppose $C \trianglelefteq G \ni C = \{x \in G : (\forall a \in G)(xa = ax) \}$.
+Then $G/C$ is well-defined.
+
+Assume that $G/C$ is cyclic, i.e.
+we have that $\exists Ca \in G/C \ni \langle Ca \rangle = G/C$.
+
+\begin{thm} \label{thm13}
+	For any $x \in G$, there exists some $m \in \ints$ where $Cx = Ca^m$ holds.
+\end{thm}
+
+\begin{proof}
+	Suppose $x \in G$.
+	Then, $Cx \in G/C$ by definition.
+	Since $G/C$ is cyclic,
+	we have that any $Cx \in G/C$
+	can be written as some $Cx = (Cb)^n \in G/C$,
+	where $n \in \ints$.
+	But since $(Cb)^n = Cb^n$,
+	we have $Cx = Cb^n$,
+	which proves theorem \ref{thm13}.
+\end{proof}
+
+
+\begin{thm} \label{thm14}
+	For any $x \in G$, there exists some $m \in \ints$ where $x = ca^m \ni c \in C$ holds.
+\end{thm}
+
+\begin{proof}
+	By theorem \ref{thm13},
+	we have that $Cx = Ca^m$
+	for some integer $m$,
+	for any $x \in G$.
+	Then, by the definition of a coset,
+	we have some integers $c_1,c_2 \in C$,
+	where $c_1x = c_2a^m$ holds,
+	but multiplication on the left by $c_1^{-1}$
+	yields $x = c_1^{-1}c_2a^m$,
+	and since $C$ is a subgroup,
+	we have some $c = c_1^{-1}c2 = \in C$,
+	so $x = ca^m \ni c \in C$,
+	which proves theorem \ref{thm14}.
+\end{proof}
+
+\begin{thm}
+	For any two $x,y \in G$, we have $xy = yx$.
+\end{thm}
+
+\begin{proof} \label{thm15}
+	By theorem \ref{thm14},
+	any $x,y \in G$ can be written as
+	$x = ca^m$ and $y = da^n$
+	for some $c,d \in C$
+	and some $m,b \in \ints$.
+	Since by definition,
+	any element of $C$ commutes
+	with any element of $G$,
+	we have $xy = (ca^m)(da^n) = c(da^m)a^n = (dc)a^{m + n}
+	= (dc)a^{n + m} = d(ca^n)a^m = (da^n)(ca^m) = yx$,
+	which proves theorem \ref{thm15}.
+\end{proof}
+
+\begin{thm} \label{thm16}
+	If $G/C$ is cyclic, then $G$ is abelian.
+\end{thm}
+
+\begin{proof}
+	Suppose $G/C$ were cyclic.
+	Then, we have theorem \ref{thm13},
+	and by theorem \ref{thm14},
+	we have theorem \ref{thm15},
+	and by theorem \ref{thm15},
+	we have that for any two
+	$x,y \in G$, we have $xy = yx$,
+	so $G$ is abelian.
+	This proves theorem \ref{thm16}.
+\end{proof}
 
 \end{document}
