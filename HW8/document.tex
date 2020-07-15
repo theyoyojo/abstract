@@ -11,6 +11,7 @@
 \newcommand{\rats}{\mathbb{Q}}
 \newcommand{\ints}{\mathbb{Z}}
 \newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\sltwo}{SL_2(\reals)}
 \newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
 \newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
 #4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
@@ -19,6 +20,7 @@
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\freals}{\mathcal{F}(\reals)}
 \newcommand{\dreals}{\mathcal{D}(\reals)}
+\newcommand{\creals}{\mathcal{C}(\reals)}
 \newtheorem{thm}{Theorem}
 \newtheorem{cnt}{Counterexample}
 
@@ -211,7 +213,7 @@ Suppose $H \trianglelefteq G$ where $G$ is a group.
 \begin{proof}
 	Suppose $x \in \rats / \ints$.
 	Then $x$ can be written as
-	some unique $y + \ints$,
+	some $y + \ints$,
 	where $y \in \rats$.
 	Then, we can write $y = \frac{m}{n}$
 	for some $m,n \in \ints$
@@ -228,6 +230,171 @@ Suppose $H \trianglelefteq G$ where $G$ is a group.
 	for any $y = \frac{m}{n} \in \rats$,
 	therefore $\ord(x) = n \in \nats$.
 	This proves theorem \ref{thm5}.
+\end{proof}
+
+
+\section{The elements of factor group form an equivalence class}
+
+Define the equivalence relation $\sim$
+by $r \sim s \iff r - s \in \ints$ for some $r,s \in \rats$.
+Let $[r]$ refer to the equivalence class of $r$ with respect to $\sim$.
+
+\begin{thm} \label{thm6}
+	$\rats / \ints = \{X: X = [r] \ni r \in \rats \}$.
+\end{thm}
+
+\begin{proof}
+	Suppose $X \in \rats / \ints$.
+	Then, $X$ is a coset of the form $r + \ints$
+	where $r \in \rats$.
+	Let $a,b \in X$.
+	Then, $a = r + x_1 \ni x_1 \in \ints$
+	and $b = r + x_2 \ni x_2 \in \ints$.
+	Therefore, $a -b = (r + x_1) - (r + x_2) = x_1 - x_2 \in \ints \iff a \sim b \iff X = [r]$,
+	therefore any $a,b \in X \implies a \sim b$,
+	so any $X \in \rats / \ints \implies X = [r] \ni r \in \rats$.
+
+	Conversely, suppose $X = [r] \ni r \in \rats$.
+	Then, any $a,b \in X$ can be written as
+	$r + x_1 \ni x_1 \in \ints$.
+	This is exactly the definition of a coset of the integers under the rationals,
+	so we must have $X \in \rats / \ints$.
+	Then, $X \in \rats / \ints \implies X = [r] \ni r \in \rats \land
+	X = [r] \ni r \in \rats \implies X \in \rats / \ints \iff
+	\rats / \ints = \{ X: X = [r] \ni r \in \rats \}$
+	by the axiom of extentionality.
+	This proves theorem \ref{thm6}.
+\end{proof}
+
+\section{Factoring the alternating group of four elements}
+
+Suppose $H = \{e, (12)(34), (13)(24), (14)(23) \}$ is a subgroup
+of the $A_4 = \{e, (12)(34), (13)(24), (14)(23),(123),(132),(124),(142),(134),(143)(234),(243) \}$
+alternating group of four elements.
+In fact $H \trianglelefteq A_4$ by Homework 7 problem 12.
+
+Then, we can write $A_4/H = \{H, H(123), H(132)\}$,
+and table \ref{t4} gives the operation table for
+$A_4/H$ under coset multiplication.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|lll}
+	$*$ & $H$ & $H(123)$ & $H(132)$ \\ \hline
+	$H$ & $H$ & $H(123)$ & $H(132)$ \\
+	$H(123)$ & $H(123)$ & $H(132)$ & $H$ \\
+	$H(132)$ & $H(132)$ & $H$ & $H(123)$ \\
+\end{tabular}
+\centering
+\caption{Operation table for $A_4/H$ under coset multiplication} 
+\label{t4}
+\end{table}
+
+\begin{thm} \label{thm7}
+	$Ha \in A_4/H \ni a \not\in H \implies \ord(Ha) = 3$.	
+\end{thm}
+
+\begin{proof}
+	This is a simple proof by exhaustion.
+	There are only two cases to check.
+	First, observe that $(H(123))^2 = H(123)^2 = H(132)$,
+	and $(H(123))^3 = H(132) \cdot H(123) = H((132)(123)) = H$,
+	so $\ord(H(123)) = 3$.
+	Then, observe that $(H(132))^2 = H(132)^2 = H(123)$,
+	and $(H(132))^3 = H(123) \cdot H(132) = H((123)(132)) = H$,
+	so $\ord(H(132)) = 3$.
+	Since there are no other unique cosets where $a \not\in H$,
+	we have shown that theorem \ref{thm7} holds for
+	all possible cases, so this proves
+	theorem \ref{thm7} in general.
+\end{proof}
+
+\section{Digging up an old equivalence relation}
+
+Suppose $f,g \in \freals$.
+
+Suppose we have
+the function $\phi: \dreals \to \freals$
+defined by $\phi(f) = \frac{df}{dx}$
+where $x$ is the independent variable of $f$.
+By the result of Homework 7 problem 2,
+$\phi$ is an epimorphism from $\dreals$ to $\freals$,
+so $\phi$ is a homomorphism from $\dreals$ to $\freals$.
+Let $H = \ker(\phi)$ and define the relation $\sim$ as:
+
+\begin{align} \label{sim}
+	f \sim g \iff (\forall x \in \reals)(f(x) - g(x) = c \text{ for some } c \in \reals)
+\end{align}
+
+\begin{thm} \label{thm8}
+	$(\forall f \in \dreals)(f + H = \{g \in \dreals: g = f + c \ni c \in \reals)$
+\end{thm}
+
+\begin{proof}
+	Suppose $f \in \dreals$.
+	Then, $[f] = \{g \in \dreals: g \sim f \}$, and let $g \in [f]$.
+	$f \sim g \iff (\forall x \in \reals)(f(x) - g(x) = c \ni c \in \reals)$.
+	Since the neutral element of $\freals$ is $\epsilon(x) = 0$ and
+	only a $c \in \reals$ satisfies $\frac{d}{dx} x = 0$,
+	we can describe $H$ entirely by $H = \reals$,
+	so clearly every $g \in [f]$ satisfies $g = f + c$
+	and this is exactly the definition of $g$ being
+	an element of the coset $f + H$,
+	so any $g \in [f]$ satisfies $g \in f + H$.
+	In fact, it works both ways, that any
+	$g \in f + H$ can be written as some $g = f + c \ni c \in \reals$,
+	so $g - f = c \in \reals$, implicitly for any value of
+	the independent variable of the two functions.
+	This is exactly the definition that $f \sim g$,
+	so we have $g \in [f]$,
+	and by the axiom of extensionality
+	we must have $f + H = \{g \in \dreals: g = f + c \ni c \in \reals\}$
+	for any $f \in \dreals$. This proves theorem \ref{thm8}.
+\end{proof}
+
+\section{A homomorphism on continuous functions}
+
+Suppose $G = \creals$ and define $\psi: G \to \reals \ni \psi(f) = \int_0^1 f(x)dx$.
+We consider the group $G$ under function addition
+and the group of the real numbers under conventional addition.
+
+\begin{thm} \label{thm9}
+	$\psi$ is a homomorphism with kernel $\ker(\psi) = H = \{f \in \creals: \int_0^1 f(x)dx = 0 \in \reals\}$.
+\end{thm}
+
+\begin{proof}
+	Let $f,g \in \creals$.
+	Then, $\psi(f + g) = \int_0^1 (f(x) + g(x)dx = \int_0^1 f(x)dx + \int_0^1 g(x)dx = \psi(f) \psi(g)$,
+	so $\psi$ is a homomorphism.
+	Since the additive identity of $\reals$ is $0$ and any for any $f \in \creals$,
+	we have $\psi(f) = \int_0^1 f(x)dx$, we can fully describe the kernel of $\psi$
+	by $\ker(\psi) = \{ f \in \creals : \int_0^1 f(x)dx = 0 \in \reals \}$.
+	This proves theorem \ref{thm9}.
+\end{proof}
+
+By theorem \ref{thm9},
+$G/H$ is defined since the kernel of a homomorphism
+is a normal subgroup of the domain of that same homomorphism.
+Then, we can descibe this quotient group
+by $G/H = \{X: X = f + H \ni (\forall g \in H)(\int_0^1 (f(x) + g(x))dx = \int_0^1 g(x)dx) \}$.
+
+\section{Normal subgroups of the general linear group in two dimensions}
+
+Suppose $G = \gltwo$ and $H = \{ X \in G: \det(X) = 1 \} = \sltwo$ be a subgroup of $G$.
+
+\begin{thm} \label{thm10}
+	$H \trianglelefteq G$
+\end{thm}
+
+\begin{proof}
+	Define the function $\phi: \gltwo \to \reals^* \ni \phi(A) = \det(A) \ni A \in \gltwo$.
+	Then every $X \in \gltwo$ satisfies $\phi(X) = \det(X) = 1 \iff X \in \sltwo$
+	because this is exactly the definition of an element being in $\sltwo$.
+	Since for any $A,B \in \gltwo$, we have $\phi(AB) = \det(AB) = \det(A)\det(B) = \phi(A)\phi(B)$,
+	we have that $\phi$ is a homomorphism from $\gltwo$ to $\reals^*$
+	with $\ker(\phi) = \sltwo$.
+	Then, since the kernel of a homomorphism is a normal subgroup of the domain,
+	we have that $\sltwo$ is a normal subgroup of $\gltwo$,
+	that is to say, $H \trianglelefteq G$ and this proves theorem \ref{thm10}.
 \end{proof}
 
 %\begin{thm} \label{thm4}
