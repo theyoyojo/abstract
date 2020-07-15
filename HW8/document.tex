@@ -402,7 +402,7 @@ by $G/H =  \{X:X=Y\cdot\sltwo\ni Y\in \gltwo\}$.
 
 \section{Another look at $\gltwo$}
 
-Suppose $G = \gltwo$ and $H = \{X \in \gltwo: \det(X) > 0$.
+Suppose $G = \gltwo$ and $H = \{X \in \gltwo: \det(X) > 0\}$.
 
 Define $\phi:G \to P$ where $P = \{-1,1\}$ and for any $X \in \gltwo$,
 we have $\phi(X) = \begin{cases} 1 & \textrm{ if } \det(X) > 0 \\
@@ -451,7 +451,7 @@ under multiplication.
 	so $X \in H \iff X \in \ker(\phi)$.
 
 	Introduce another aribtrary $Y \in \gltwo$.
-	Then, $\det(X)\det(Y) = \det(XY) > 0$
+	Then, $\det(X)\det(Y) > 0 \iff \det(XY) > 0$
 	so $\phi(XY) = \phi(X)\phi(Y)$,
 	and $\phi$ is a homomorphism.
 
@@ -474,7 +474,7 @@ Now we consider $G/H$.
 We first see that of course $e \in H \implies eH = H \in G/H$.
 then, any $x \in H$ satisfies $aH = H$.
 Suppose we have some $A \in G \not\in H \iff \det(A) < 0$.
-We see that $AH \neq H$ since $A \not\in H$, so $AH \in G/H$.
+We see that $AH \neq H$ since $A \not\in H$ and $AH \in G/H$.
 Then, define $\psi:G/H \to P$ by $\psi(AH) = \phi(A)$ for any $A \in G$.
 Since for any $AH, BH \in G/H$,
 we have $\psi(AH)\psi(BH) = \phi(A)\phi(B) = \phi(AB) = \psi((AB))$,
@@ -546,7 +546,8 @@ we have that $\exists Ca \in G/C \ni \langle Ca \rangle = G/C$.
 
 
 \begin{thm} \label{thm14}
-	For any $x \in G$, there exists some $m \in \ints$ where $x = ca^m \ni c \in C$ holds.
+	For any $x \in G$, there exists some $m \in \ints$ where $x = ca^m \ni c \in C$ holds
+	for the particular $a \in C \ni \langle Ca \rangle = G/C$.
 \end{thm}
 
 \begin{proof}
@@ -592,7 +593,7 @@ we have that $\exists Ca \in G/C \ni \langle Ca \rangle = G/C$.
 	Suppose $G/C$ were cyclic.
 	Then, we have theorem \ref{thm12},
 	and by theorem \ref{thm12},
-	Then, we have theorem \ref{thm13},
+	we have theorem \ref{thm13},
 	and by theorem \ref{thm13},
 	we have theorem \ref{thm14},
 	and by theorem \ref{thm14},
