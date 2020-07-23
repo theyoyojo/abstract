@@ -1,0 +1,407 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Homework \#9}
+\author{Joel Savitz}
+\date{Wednesday 22 July 2020}
+
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\sltwo}{SL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newcommand{\dreals}{\mathcal{D}(\reals)}
+\newcommand{\creals}{\mathcal{C}(\reals)}
+\newcommand{\powset}{\mathcal{P}}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+\maketitle
+
+\section{A consequence of the fundamental homomorphism theorem}
+
+Suppose $G = \ints_{15}$ and $H = \ints_5$.
+
+Let $f: G \to H \ni f = \binom{0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 10\ 11\ 12\ 13\ 14}{\; 0\ 1\ 2\ 3\ 4\ 0\ 1\ 2\ 3\ 4\ 0\ \; \; 1\ \; \; 2\ \; \; 3\ \; \; 4\ }$ be a hommorphism from $G$ to $H$.
+
+We have $\ker(f) = \{x \in G: f(x) = 0 \in H \} = \{0, 5, 10\} \subseteq G$,
+therefore $G/H = \{ \{0, 5, 10\}, \{1, 6, 11\}, \{2, 7, 12\}, \{3, 8, 13\}, \{4, 9, 14\} \}$.
+
+By the fundamental homomorphism theorem, we have $H \cong G/K$ since $K$ is the kernel of a homomorphism from $G$ to $H$.
+
+\section{Chapter 16, Exercise A3}
+
+Suppose $G = S_3$ and $H = \ints_2$.
+
+Denote the elements of $S_3$ as follows:
+\begin{align}
+	\label{topperm}
+	r_1 = & \binom{1\ 2\ 3}{2\ 3\ 1} &
+	r_2 = & \binom{1\ 2\ 3}{3\ 1\ 2} &
+	r_3 = & \binom{1\ 2\ 3}{1\ 2\ 3} \\
+	\label{botperm}
+	f_1 = & \binom{1\ 2\ 3}{1\ 3\ 2} &
+	f_2 = & \binom{1\ 2\ 3}{3\ 2\ 1} &
+	f_3 = & \binom{1\ 2\ 3}{2\ 1\ 3}
+\end{align}
+
+Then, table \ref{t1} describes the behavior of $G$ under function composition.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|llllll}
+	$\circ$ & $r_3$ & $r_1$ & $r_2$ & $f_1$ & $f_2$ & $f_3$	\\ \hline
+	$r_3$ & $r_3$ & $r_1$ & $r_2$ & $f_1$ & $f_2$ & $f_3$   \\
+	$r_1$ & $r_1$ & $r_2$ & $r_3$ & $f_3$ & $f_1$ & $f_2$ 	\\
+	$r_2$ & $r_2$ & $r_3$ & $r_1$ & $f_2$ & $f_3$ & $f_1$ 	\\
+	$f_1$ & $f_1$ & $f_3$ & $f_2$ & $r_3$ & $r_2$ & $r_1$ 	\\
+	$f_2$ & $f_2$ & $f_1$ & $f_3$ & $r_1$ & $r_3$ & $r_2$ 	\\
+	$f_3$ & $f_3$ & $f_2$ & $f_1$ & $r_2$ & $r_1$ & $r_3$	\\
+\end{tabular}
+\centering
+\caption{Operation table for $G$ under $\circ$}
+\label{t1}
+\end{table}
+
+Define $K = \{ r_1, r_3, r_3\}$
+
+\begin{thm} \label{thm1}
+	$H \cong G/K$
+\end{thm}
+
+\begin{proof}
+	Define $\phi:G \to H$
+	by $f = \{ (r_1, 0), (r_2, 0), (r_3,0), (f_1,1),(f_2,1),(f_3,1) \}$.
+	By inspection, $f$ is surjective, since by definition it maps some element of $G$ to
+	both $0 \in H$ and $1 \in H$ at least once, so it is surjective.
+	Let $x,y \in S_3$ and consider $f(x) + f(y)$.
+	We will use the term rotation to refer any $x \in G$
+	where $f(x) = 0$ and flip to refer to any $x \in G$
+	where $f(x) = 1$. Since $f$ maps every element of $G$ to an element of $H$,
+	and $H = \{ 0, 1\}$, every element of $G$ is either a flip or a rotation.
+	Suppose $x$ is a flip and $y$ is a flip. Then, $xy$ is a rotation by
+	table \ref{t1} so $f(xy) = 0$ and $f(x) + f(y) = 1 + 1 = 0$,
+	thus $f(xy) = f(x) + f(y)$.
+	Suppose $x$ is a rotation and $y$ is a rotation. Then, $xy$ is a rotation
+	by table \ref{t1} so $f(xy) = 0$ and $f(x) + f(y) = 0 + 0 = 0$,
+	thus $f(xy) = f(x) + f(y)$.
+	Suppose $x$ is a flip and $y$ is a rotation. Then, by table \ref{t1},
+	$xy$ is a flip. Alternatively, if $x$ is a rotation and $y$ is a flip,
+	table \ref{t1} still constrains us such that $xy$ must be a flip,
+	thus we will consider the two cases together. Then,
+	we have either $f(x) = 0 \land f(y) = 1$ or $f(x) = 1 \land f(y) = 0$,
+	but in both cases we have $f(x) + f(y) = 1 = f(xy)$.
+	Since the proposition holds for all possible cases,
+	we have that for any $x,y \in G$, it holds that $f(x) + f(y) = f(xy)$,
+	so we conclude that $f$ is a homomorphism onto $H$.
+
+	By inspection, $\ker(f) = K = \{r_1, r_2, r_3\}$ since this is
+	exactly the subset of $G$ containing every element that is mapped
+	to $0 \in H$ by $f$. As demonstrated above, every rotation composed
+	with a rotation is simply another rotation,
+	and $r_2 \circ r_1 = r_1 \circ r_2 = r_3 \circ r_3 = r_3$,
+	so $K$ is a subgroup of $G$, and since it is the kernel of a homomorphism,
+	$K$ is furthermore a normal subgroup of $G$, so $G/K$ is well defined.
+	By the fundamental homomorphism theorem, the quotient group formed by
+	the kernel of a homomorphism onto the codomain
+	is isomorphic to the range of the homomorphism, so $H \cong G/K$.
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+Table \ref{t2} gives the operation table for $H$ under $\circ$.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|lll}
+	$\circ$ & $r_3$ & $r_1$ & $r_2$ \\ \hline
+	$r_3$ & $r_3$ & $r_1$ & $r_2$ \\
+	$r_1$ & $r_1$ & $r_2$ & $r_3$ \\
+	$r_2$ & $r_2$ & $r_3$ & $r_1$
+\end{tabular}
+\centering
+\caption{Operation table for $H$ under $\circ$}
+\label{t2}
+\end{table}
+
+
+Table \ref{t3} gives the operation table for $G/K$ under coset composition.
+
+\begin{table}[!ht] 
+\begin{tabular}{l|lll}
+	$\circ$ & $K$ & $Kr_1$ & $Kr_2$ \\ \hline
+	$K$ & $K$ & $Kr_1$ & $Kr_2$ \\
+	$Kr_1$ & $Kr_1$ & $Kr_2$ & $K$ \\
+	$Kr_2$ & $Kr_2$ & $K$ & $Kr_1$
+\end{tabular}
+\centering
+\caption{Operation table for $G/K$ under coset $\circ$}
+\label{t3}
+\end{table}
+
+\section{Chapter 16, Exercise A4}
+
+Suppose $a, b,$ and $c$ are some sets.
+
+Let $G = \powset(\{a,b,c\})$, $H = \powset(\{a,b\})$, and $K = \{ \emptyset, \{ c \}\}$.
+
+\begin{thm} \label{thm2}
+	$H \cong G/K$
+\end{thm}
+
+\begin{proof}
+	Define $f:G \to H$ by $f(X) = X \cap \{ a,b\} \in H \ni X \in G$
+	and assume it is a homomorphism from $G$ to $H$.
+	Let $z \in H$. Clearly $f(z) = z$, so $f$ is surjective.
+	Then, suppose $x \in G \ni f(x) = \emptyset$.
+	Since $f(x) = x \cap \{a,b\}$, we have that $f(x) = \emptyset$
+	only if $a \not\in x \land b \not\in x$ by definition of set intersection.
+	Then, we construct this set by the axiom schema of comprehension over
+	this last predicate, i.e. we have $\ker(f)  = \{x \in \powset(G): a \not\in x \land b \not\in x\}$.
+	Suppose $y \in K$. By inspection $a \not\in y \land b \not\in y$.
+	Thus, $K \subseteq \ker(f)$. Alternatively take some $y \in \ker(f)$.
+	By the definition of this set, $a \not\in y \land b \not\in y$, and since
+	there are no other elements in $\powset(G)$ besides $\{c\}$ and $\emptyset$,
+	we must have $y \in K$, so $\ker(f) \subseteq K$, and by the axiom of extentionality,
+	we have $K \subseteq \ker(f) \land \ker(f) \subseteq K \iff K = \ker(f)$,
+	and by the fundamental homomorphism theorem, the quotient group formed by the kernel
+	of a homomorphism onto the codmain is isomorphic to the range of that homormorphism,
+	so $H \cong G/K$ and this proves theorem \ref{thm2}.
+\end{proof}
+
+\section{Chapter 16, Exercise A5}
+
+Suppose $G = \ints_3 \times \ints_3$ and $H = \ints_3$ and $K = \{ (0,0), (1,1), (2,2) \}$.
+
+
+\begin{thm} \label{thm3}
+	$H \cong G/K$
+\end{thm}
+
+\begin{proof}
+	Define $f:G \to H$ by $f(a,b) = a - b$
+	and assume $f$ is a homomorphism.
+	Since for all $a,b \in \ints_3$,
+	we have $a - b = 0 \iff a = b$,
+	we must have that $\ker(f) = K$ since these
+	are all the elements of $G$ of the form $(a,a) \ni a \in \ints_3$.
+	To verify this, inspect $K$.
+	Suppose $x \in \ints_3$.
+	Then at the very least, we have $f((x,0)) = x \ni (x,0) \in \ints_3 \times \ints_3$,
+	so $f$ is surjective.
+	Then, since by the fundamental homomorphism theorem 
+	the group formed by the kernel of a homomorphism
+	onto the codomain
+	is isomorphic to the range of the homomorphism,
+	we have $H \cong G/K$ and this proves theorem \ref{thm3}.
+\end{proof}
+
+\section{The FHT applied to $\freals$}
+
+Define $\alpha: \freals \to \reals$ by $\alpha(f) = f(1) \ni f \in \freals$,
+and define $\beta: \freals \to \reals$ by $\beta(f) = f(2) \ni f \in \freals$.
+
+Instead of using the normal, boring terminology of ``surjective homomorphism'',
+I will use an equivalent and much cooler term from category theory,
+the epic morphism, or epimorphism. To be precise for this context, an epic morphism is
+a surjective homomorphism.
+
+\begin{thm} \label{thm4}
+	$\alpha$ and $\beta$ are epic morphisms from $\freals \to \reals$.
+\end{thm}
+
+\begin{proof}
+	Suppose $f,g \in \freals$.
+	Then, $\alpha(f) + \alpha(g) = f(1) + g(1)  = (f + g)(1) = \alpha(f + g)$
+	and $\beta(f) + \beta(g) = f(2) + g(2) = (f + g)(2) = \beta(f + g)$
+	since the vector addition of real valued functions is linear,
+	so $\alpha$ and $\beta$ are homomorphisms.
+	To verify the epic property of these morphisms,
+	take $a \in \reals$,
+	and define $f \in \freals \ni f(x) = (x - 1) + a$
+	and define $g \in \freals \ni g(x) = (x - 2) + a$.
+	By inspection, we see that $\alpha(f) = a$ and $\beta(g) = a$,
+	so $\alpha$ and $\beta$ are surjetive,
+	i.e. $\alpha$ and $\beta$ are epic morphisms from $\freals \to \reals$
+	and this proves theorem \ref{thm4}.
+\end{proof}
+
+
+Now suppose $J = \{ f \in \freals: (1,0) \in f \}$ and
+$K = \{ f \in \freals: (2,0) \in f \}$.
+
+\begin{thm} \label{thm5}
+	$\reals \cong \freals/J \land \reals \cong \freals/K$
+\end{thm}
+
+\begin{proof}
+	Suppose $f \in \freals$.
+	Since $\alpha(f) = f(1) = 0$ if only if
+	$(1,0) \in f$, and this is exactly the predicate
+	of the set comprehension used to construct $J$,
+	we have $\ker(\alpha) = J$.
+	Since $\beta(f) = f(2) = 0$ if only if
+	$(2,0) \in f$, and this is exactly the predicate
+	of the set comprehension used to construct $K$,
+	we have $\ker(\beta) = K$.
+	By theorem \ref{thm4}, we have that
+	$\alpha$ and $\beta$ are epic morphisms,
+	so by the fundamental homomorphism theorem,
+	the quotient groups formed by the kernel of
+	some epic morphism are isomorphic to the range
+	of that morphism, that is to say,
+	$\reals \cong \freals/J \land \reals \cong G/K$
+	and this proves theorem \ref{thm5}.
+\end{proof}
+
+\begin{thm} \label{thm6}
+	$\freals/J \cong \freals/K$.
+\end{thm}
+
+\begin{proof}
+	$\reals \cong \freals/J \land \reals \cong \freals/K \iff \freals/J \cong \freals/K$
+	by the transitivity of the equivalence relation that is group isomorphism.
+	This proves theorem \ref{thm6}. lol.
+\end{proof}
+
+\section{Chapter 16, Exercise C1}
+
+Suppose $G$ is some abelian group,
+and let $H = \{x \in G: x = y^2 \ni y \in G \}$.
+
+\begin{thm} \label{thm7}
+	The function $f:G \to H \ni f(x) = x^2 \ni x \in G$ is an epic morphism from $G$ to $H$.
+\end{thm}
+
+\begin{proof}
+	Suppose $x,y \in G$.
+	Since $G$ is abelian, we have $f(x)f(y) = xxyy = xyxy = f(xy)$,
+	so the status of $f$ as a homomorphism is established.
+	Then, consider any $y \in H$. By definition of $H$,
+	there must exist some $x \in G$ such that $x^2 = G$,
+	so $f(x) = x^2 = y \in H$ and $f$ is an epic morphism.
+	This proves theorem \ref{thm7}.
+\end{proof}
+
+\section{Chapter 16, Exercise F}
+
+For any two subgroups $A$ and $B$ of some group $G$,
+define $AB = \{x \in G: x = yz \ni y \in A \land z \in B \}$.
+
+\begin{thm} \label{thm9}
+	For any group $G$ with a normal subgroup $H$ and a subgroup $K$,
+	we have $K/(H \cap K) \cong HK/H$.
+\end{thm}
+
+\begin{proof}
+	Since $H \trianglelefteq G$,
+	we must have that for any $x \in H$,
+	and any $a \in G$
+	we have $axa^{-1} \in H$.
+	If we take some $b \in K$,
+	we must also then have $bxb^{-1} \in H$
+	since $K \subseteq G$.
+	Every element of $H \cap K$ has it's inverse
+	in  $H \cap K$ if and only if this is true
+	for both $H$ and $K$ individually,
+	which it is by definition of a subgroup,
+	and since $H \cap K \subseteq K$ by definition of set intersection,
+	we have that $(H \cap K) \trianglelefteq K$.
+
+	Now we consider the set $HK$.
+	Trivially, $HK \subseteq G$ since groups are closed under their operation.
+	Let $a,b \in HK$ then, $a = rs \ni r \in H \land s \in K$
+	and $b = jk \ni j \in H \land k \in K$.
+	Therefore $ab = (rs)(jk)$, and since $H$ is normal with respect to $G$,
+	it commutes with every element of $G$ and the elements of $K$ are among them
+	due to subset status. So, we can rearange $ab = (rj)(sk) \in HK$
+	since $rj \in H$ and $sk \in K$. Therefore $HK$ is closed under the group operation.
+	Suppose $x = yz \in HK \ni y \in H \land z \in K$.
+	Then, $y^{-1} \in H \land z^{-1} \in K$,
+	and since $e \in H \land e \in K$, we have $y^{-1}e \in HK \land ez^{-1} \in K$,
+	and of course $z^{-1}y^{-1} = (yz)^{-1} \in HK$, so every element of $HK$
+	has its inverse in $HK$, so $HK$ is a subgroup of $G$.
+	Now since every element $x$ of $H$ can be written as $xe \ni e \in K$,
+	it is clear that $x \in HK$, so $H \subseteq HK$.
+	Since $H$ is a subgroup of $G$, every $a,b \in H$ satisfies $ab \in H$,
+	so this also applies with respect to $K$ and we additionally conclude
+	from the fact that $H$ is already a subgroup that every element of $H$
+	has its inverse in $H$, so $H \leq K$.
+	Since $HK \subseteq G$, it is trivial that for any $x \in H$,
+	we have $axa^{-1} \in H$ for any $a \in HK$,
+	so in fact we have $H \trianglelefteq HK$.
+	With this last fact established,
+	we have that $HK/H$ must be well-defined.
+
+	Take some $x \in HK/H$.
+	By definition, this $x$ can be written as $x = Ha \ni a \in HK$,
+	and then any $y \in Ha$ can be written as $y = ha \ni a \in HK$,
+	and then this $y$ can be written as some $pq \ni p \in H \land q \in K$,
+	therefore $y = hpq$. Since $h \in H \land p \in H$, we must have $hp \in H$.
+	We also have $q \in K$. Since $y = (hp)q \in Ha$ we have that any $Ha$
+	can be written as $Hq$ for some $q \in K$.
+
+	Now define the function $f:K \to HK/H \ni f(k) = Hk \ni k \in K$.
+	Let $a,b \in K$. Then, we see that $f(a) f(b) = (Ka)(Kb) = K(ab) = f(ab)$
+	so $f$ is a homomorphism. Consider any $y \in HK/H$.
+	Since $y$ can be written as some $Hk \ni k \in K$,
+	we must have a $k \in K$ where $f(k) = Ka$ therefore $f$ is surjective
+	and is an epic morphism from $K$ to $HK/H$.
+
+	Suppose $x \in H \cap K$.
+	Then, $f(x) = Hx = H$ since $x \in H$.
+	Therefore $x \in \ker(f)$.
+	Alternatively, suppose $x \in \ker(f)$.
+	Then, $f(x) = Hx = H$, so $x \in H \cap K$ or else this would not hold,
+	and by the axiom of extentionality,
+	we have $H \cap K \subseteq \ker(f) \land \ker(f) \subseteq H \cap K \iff \ker(f) = H \cap K$.
+	By the fundamental homomorphism theorem,
+	we have that the quotient group formed by
+	the kernel of an epic morphism is isomorphic to the range of the morphism,
+	i.e. $H \cap K \cong HK/H$.
+	This proves theorem \ref{thm9}.
+\end{proof}
+
+\section{Chapter 16, Exercise I}
+
+\begin{thm} \label{thm8}
+	For any two normal subgroups $H$ and $K$ of some group $G$ where $H \subseteq K$
+	and some function $\phi:G/H \to G/K \ni \phi(Ha) = Ka \ni Ha \in G/H$,
+	we have that $(G/H)/(K/H) \cong G/K$.
+\end{thm}
+
+\begin{proof}
+	Suppose $Ha, Hb \in G/H \ni Ha = Hb$.
+	Then $\phi(Ha) = Ka$ and $\phi(Hb) = Kb$,
+	but since $Ha = Hb \iff ab^{-1} \in H$,
+	we must have $Ka = Kb \iff ab^{-1} \in K$
+	since $H \subseteq K$.
+	Therefore $\phi$ is well-defined.
+	We see that $\phi(Ha)\phi(Hb) = (Ka)(Kb) = K(ab) = \phi(H(ab)) = \phi((Ha)(Hb))$,
+	so $\phi$ must be a homomorphism.
+	Furthermore, for any $Ka \in G/K$, it is obvious from the definition that $\phi(Ha) = Ka$,
+	so $\phi$ maps $G/H$ onto $G/K$, so $\phi$ is an epic morphism.
+	Consider an element $x \in K/H = \{x \in G/H: x = Ha \ni a \in K\}$.
+	Since the identity element of $G/K$ is nothing but $K$ itself,
+	we see that $\phi(x) = K$ since $x = Ha \ni a \in K$ and $K = Ka$ for any $a \in K$.
+	therefore, $K/H \subseteq \ker(\phi)$.
+	Alternatively, consider some $y \in \ker(\phi)$.
+	Since $\phi(y) = K = Ka \ni a \in K$,
+	we must have that $y$ is of the form $y = Ha \ni a \in K$,
+	therefore $y \in K/H$ by the definition of quotient group
+	and $\ker(\phi) \subseteq K/H$ and then by the axiom of extentionality,
+	$\ker(\phi) = K/H$.
+	Finally, since $K/H$ is the kernel of an epic morphism from $G/H$
+	to $G/K$, we must have $(G/H)/(K/H) \cong G/K$
+	by the fundamental homomorphism theorem.
+	This proves theorem \ref{thm8}.
+\end{proof}
+
+\end{document}
