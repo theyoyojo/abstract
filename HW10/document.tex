@@ -1,0 +1,369 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Homework \#10}
+\author{Joel Savitz}
+\date{Wednesday 29 July 2020}
+
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\sltwo}{SL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newcommand{\dreals}{\mathcal{D}(\reals)}
+\newcommand{\creals}{\mathcal{C}(\reals)}
+\newcommand{\powset}{\mathcal{P}}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 17, Exercise B}
+
+\textbf{1. Verification of ring properties}
+
+Consider the group $\freals$ under function addition.
+
+\begin{thm} \label{thm1}
+	The set $\freals$ is a commmutative ring with unity under function addition and multiplication
+\end{thm}
+
+\begin{proof}
+	Suppose $f,g,h \in \freals$.
+	Since for any $x \in \reals$, we have $f + g = f(x) + g(x) = g(x) + f(x) = g + f$,
+	the set $\freals$ forms an ableian group under function addition.
+	We see that for any $x \in \reals$, it holds that $f(gh) = f(x)(g(x)h(x)) = (f(x)g(x))h(x) = (fg)h$,
+	so multiplication is associative on the set $\freals$.
+	Then, consider that for any $x \in \reals$,
+	it is also the case that $f(g + h) = f(x)(g(x) + h(x)) = f(x)g(x) + f(x)h(x) = fg + fh$,
+	and the same holds for multiplication of $g + h$ by $f$ on the right,
+	therefore multiplication is distributive over additon.
+	Since $\freals$ is an abelian group with associative multiplication that distributes over addition,
+	$\freals$ is a ring, and since $fg = f(x)g(x) = g(x)f(x) = gf$, it is a commutative ring.
+
+	Suppose $q \in \freals$ such that $\forall x \in \reals$ we have $q(x) = 0 \in \reals$.
+	Then, $f + q = f(x) + q(x) = f(x) + 0 = f(x) = f$,
+	so this $q$ must be the neutral element of $\freals$.
+
+	Suppose $p \in \freals$ such that $\forall x \in \reals$ we have $p(x) = 1 \in \reals$.
+	Then, $fp = f(x)p(x) = f(x)\cdot 1  = f(x) = f$
+	so this $p$ must be the unity of $\freals$.
+
+	Suppose $s \in \freals$ such that $\forall x \in \reals$ we have $s(x) = -f(x) \in \reals$.
+	Then, $f + s = f(x) + s(x) = f(x) + -f(x) = 0$
+	so this $s(x) = -f(x) $ must be negative of any $f \in \freals$.
+
+	To conclude, we have shown that $\freals$ is a commutative ring with unity.
+	This proves theorem \ref{thm1}.
+\end{proof}
+
+\noindent
+\textbf{2. The Divisors of Zero}
+
+Let $(h(x) = 0) \in \freals$ denote the zero function.
+
+Suppose $f,g \in \freals$ where $f \neq h \neq g$ and $fg = h$
+
+Since a real-valued function is the zero function if and only if
+every element of the codomain maps to the real number zero,
+any function that has nonzero value at some input is not the zero function,
+however if for some $f$ and $g$, we have $f(x) = 0$ if and only if $g(x) \neq 0$
+for any real $x$, then every $(fg)(x) = 0$.
+
+Without loss of generality,
+we can assume that $f$ has real nonzero value
+on an interval $(-\infty,\alpha]$ for some $\alpha \in \reals$,
+and $g$ has nonzero value on $(\alpha, \infty)$.
+As established above, the constraint $f(x) = 0 \iff g(x) \neq 0$
+implies that $fg = h \in \freals$.
+
+More formally, we can describe the divisors of zero as follows:
+
+\begin{align}
+	f(x) = &
+\begin{cases}
+	q(x) \textrm{ if } x \le \alpha \\
+	0 \textrm{ otherwise}
+\end{cases} \\
+	g(x) = &
+\begin{cases}
+	0 \textrm{ if } x \le \alpha \\
+	q(x) \textrm{ otherwise}
+\end{cases}
+\end{align}
+
+Where the arbitrary real-valued function $q$ is defined as:
+$q: \reals \to \reals \ni (\forall x \in \reals)(q(x) \neq 0)$.
+ 
+\noindent
+\textbf{3. Invertible Elements}
+
+Let $u \in \freals$ be the unity of the ring.
+
+Some $f \in \freals$ is invertible
+if and only if
+there exists some $f^{-1} \in \freals$
+such that for all $x \in \reals$,
+we have $f(x)f^{-1}(x) = u(x)$.
+We will denote this relationship by simply writing $ff^{-1} = u$,
+or equivalently $f^{-1}f = u$ due to commutivity.
+
+Since these functions are real-valued,
+and any nonzero real number is invertible,
+it is immediately obvious that a real-valued
+function in this ring is invertible everywhere
+is and only if it is not zero-valued at any input.
+
+More formally:
+
+\begin{align}
+	(\forall f \in \freals)(\exists f^{-1} \in \freals \ni ff^{-1} = u \iff (\forall x \in \reals)(f(x) \neq 0))
+\end{align}
+
+\noindent
+\textbf{4. Is this an integral domain or a field?}
+
+The answer to both of these questions is no. Details follow.
+
+A ring is an integral domain iff it has no divisors of zero.
+
+The ring $\freals$ has at least one divisor of zero, therefore it is not an integral domain.
+
+If a ring has some nonzero element that is not invertible, then it is not a field.
+
+Define $f:\reals \to \reals \ni f(x) = \begin{cases} 0 \textrm{ if } x = 0 \\ 1 \textrm{ otherwise } \end{cases}$.
+
+Clearly, $f$ is not invertible for reasons laid out in detail in part 3 of this answer.
+Since there is some nonzero element in $\freals$ that is not invertible, we conclude that $\freals$ is not a field.
+
+\section{Chapter 17, Exercise H3}
+
+\begin{thm} \label{thm2}
+	For any integral domain $A$, we have $a^2 = b^2 \implies a = \pm b$ for any $a,b \in A$.
+\end{thm}
+
+\begin{proof}
+	Suppose $a,b \in A$ where $A$ is some integral domain and $a^2 = b^2$.
+	Since we can write this as $aa = bb$, it is evident by inspection
+	that if $a = b$, then $aa = bb$,
+	but since $bb = (-b)(-b)$, we also have $aa = (-b)(-b)$,
+	and so clearly if $a = -b$ then $aa = (-b)(-b) = bb$.
+	Suppose we have some $c \in A \ni c \neq b \land c \neq -b$.
+	Then, $c \neq b$ so $c^2 \neq b^2$,
+	and since there are no other options,
+	we conclude by exhaustion
+	that $a = \pm b$.
+
+	Alternatively we could just see from $a^2 = b^2 \iff a^2 - b^2 = (a - b)(a + b) = 0$
+	that $a = \pm b$ since an integral domain has no divisors of zero.
+	This proves theorem \ref{thm2}.
+\end{proof}
+
+\section{Chapter 17, Exercise H4}
+
+\begin{thm} \label{thm3}
+	For any integral domain $A$, we have $x \in A \ni x^2 = 1 \implies x = 1 \lor x = -1$
+\end{thm}
+
+\begin{proof}
+	Suppose $x \in A \ni x^2 = 1$.
+	Then, $x^2 - 1 = (x - 1)(x + 1) = 0$,
+	and since there are no zero divisors
+	in an integral domain,
+	$x \in \{1, -1\}$.
+	This proves theorem \ref{thm3}.
+\end{proof}
+
+\section{Chapter 17, Exercise I3}
+
+
+\begin{thm} \label{thm4}
+	For any nontrivial ring with unity $A$, $a^2 = 0 \implies
+	\exists x,y \in A \ni x(a-1) = (a-1)x = 1 \land y(a+1) = (a+1)y = 1$.
+\end{thm}
+
+\begin{proof}
+	Suppose $A$ is a nontrivial ring with unity.
+	Let $a \in A \ni a^2 = 0$.
+	Since $(a+1)(1-a) = (1-a)(a+1) = 1$, $a + 1$ is invertible,
+	and since $(a - 1)(-(a+1)) = (-(a+1))(a-1) = 1$, $a - 1$ is invertible.
+	Therefore, $a+1$ and $a-1$ are invertible and this proves theorem \ref{thm4}.
+\end{proof}
+
+\section{Chapter 17, Exercise J4}
+
+\begin{thm} \label{thm5}
+	For any nontrivial commutative ring $A$ and any two $a,b \in A \ni ab \neq 0$,
+	we have $\exists x \in A \ni x \neq 0 \ni ax = 0 \lor bx = 0
+	\implies \exists y \in A \ni yab = 0$.
+\end{thm}
+
+\begin{proof}
+	Suppose $A$ is a nontrivial commutative ring
+	and let $a,b \in A \ni ab \neq 0$.
+	Then, without loss of generality suppose $a$ is a divisor of zero.
+	Let $x \in A$ be some element where $xa = 0$.
+	Then, $xab = 0b = 0$, so $ab$ is a divisor of zero.
+	The same argument would apply if we chose $b$ initially,
+	thus generality is maintained.
+	This proves theorem \ref{thm5}.
+\end{proof}
+
+\section{Chapter 18, Exercise A1}
+
+\begin{thm} \label{thm6}
+	The set $A = \{x + \sqrt 3 y:x,y \in \ints\}$ is a subring of $\reals$.
+\end{thm}
+
+\begin{proof}
+	Suppose $a,b \in A$.
+	Then, we can express each of $a$ and $b$ as
+	$a = x + \sqrt3y$ and $b = p + \sqrt3q$ where $x,y,p,q \in \ints$.
+	Thus $a - b = (x - p) + (\sqrt 3)(y - q) \in A$,
+	so $A$ is closed with respect to subtraction.
+	In addition, $ab = (x + \sqrt 3 y)(p + \sqrt 3 q) = (xp + 3yq) + \sqrt 3 (yp + xq) \in A$,
+	so $A$ is closed with respect to subtraction.
+	A nonempty subset of some ring is closed with respect to
+	subtraction and multiplication
+	if and only if
+	that nonempty subset is a subring of the ring,
+	therefore $A$ is a subring of $\reals$.
+	This proves theorem \ref{thm6}.
+\end{proof}
+
+\section{Chapter 18, Exercise B2}
+
+The following are all of the ideals of $\ints_{12}$.
+These are also the cyclic subgroups of the same set.
+
+\begin{align*}
+	\langle 0 \rangle & = \{0\} \text{ (trivial)} \\
+	\langle 1 \rangle & = Z_{12} \text{ (trivial)} \\
+	\langle 2 \rangle & = \{0, 2, 4, 6, 8, 10 \} \\
+	\langle 3 \rangle & = \{0, 3, 6, 9 \} \\
+	\langle 4 \rangle & = \{0, 4, 8 \} \\
+	\langle 6 \rangle & = \{0, 6 \}
+\end{align*}
+
+\section{Chapter 18, Exercise B5}
+
+Consider the subring $\creals$ of all continuous real functions of the ring $\freals$.
+
+Let $f \in \freals$ be the step function,
+where for any $x \in \reals$, $f(x) = y \in \ints \ni y < x \land
+(\forall z \in \ints \ni z < y)(z \geq y \implies z = y)$, i.e, the floor of the input.
+
+We see that $f \not\in \creals$ by the counterexample that
+$\lim_{x \to 1^-} f(x) = 0 \neq \lim_{x \to 1^+} f(x) = 1$,
+therefore
+$\lim_{x \to 1} f(x)$ is undefined.
+
+Then, let $g \in \creals \ni g(x) = 1$.
+
+Since $fg$ still has a discontinuity at $x = 1$ (and every integer input),
+we conclude that $\creals$ does not absorb products in $\freals$,
+therefore the subring $\creals$ is not an ideal of the ring $\freals$.
+
+\section{Chapter 18, Exercise D4}
+
+\begin{thm} \label{thm7}
+	For any ring $A$ and some $J \subseteq A \ni |J| > 0$,
+	$\Big((\forall x,y \in J, z \in A)(x - y \in J \land xz \in J) \land 1 \in J \Big)\implies J = A$.
+\end{thm}
+
+\begin{proof}
+	Suppose $a \in A$.
+	Since $1 \in J$ and $(\forall x \in J, y \in A)(xy \in J)$,
+	we have that $1a = a \in J$,
+	therefore $A \subseteq J$.
+	By assumption, $J \subseteq A$
+	and by the axiom of extentionality, $A \subseteq J \land J \subseteq A \iff A = J$.
+	This proves theorem \ref{thm7}.
+\end{proof}
+
+\section{Chapter 18, Exercise D5}
+
+\begin{thm} \label{thm8}
+	For any ring $A$ and some $J \subseteq A \ni |J| > 0$,
+	$\Big((\forall x,y \in J, z \in A)(x - y \in J \land xz \in J)
+	\land (\exists a \in J \ni \exists a^{-1} \in A)(aa^{-1} = aa^{-1} = 1) \Big)\implies J = A$.
+\end{thm}
+
+\begin{proof}
+	Let $a^{-1} \in A$ be an element of $A$
+	such that there exists an $a \in J$
+	where $aa^{-1} = a^{-1}a = 1$.
+	Since $(\forall x \in J, y \in A)(xy \in J)$,
+	we have that $aa^{-1} = a^{-1}a = 1 \in J$,
+	thereby satisfying the antecedent of theorem \ref{thm7}.
+	Thus we conclude by theorem \ref{thm7} that $J = A$
+	and this proves theorem \ref{thm8}.
+\end{proof}
+
+\section{Chapter 18, Exercise F1}
+
+\begin{thm} \label{thm9}
+	For any two rings $A$ and $B$ and a ring homomorphism $f:A \to B$,
+	the set $f(A) = \{f(x): x \in A \}$ is a subring of $B$.
+\end{thm}
+
+\begin{proof}
+	Let $a,b \in f(A)$.
+	By the definition of $f(A)$,
+	it is trivial that $f(A) \subseteq B$.
+	By the same definition, we can rewrite $a$ and $b$
+	as some $a = f(x)$ and $b = f(y)$ for some $x,y \in A$.
+	Since $A$ is closed under subtraction,
+	we have $f(x - y) \in A \land f(x - y) \in B$
+	and by the properties of a homomorphism
+	we have $f(x -y) = f(x) - f(y) \in B$,
+	therefore $f(A)$ is closed under subtraction.
+	Similarly, $f(xy) = f(x)f(y) \in A$,
+	therefore $f(A)$ is also closed under multiplication.
+	Since $f(A)$ is a subset of the ring $B$
+	closed under subtraction and multiplication,
+	$f(A)$ is a subring of the ring $B$.
+	This proves theorem \ref{thm9}.
+\end{proof}
+
+\section{Chapter 18, Exercise F2}
+
+
+\begin{thm} \label{thm10}
+	For any two rings $A$ and $B$ and a ring homomorphism $f:A \to B$,
+	we have that $(\forall x \in \ker(f), y \in A)(xy \in \ker(f))$.
+\end{thm}
+
+\begin{proof}
+	Suppose $x \in \ker(f)$ and $y \in A$.
+	Since $f$ is a homomorphism,
+	we have $f(x)f(y) = f(xy)$.
+	Since $x \in \ker(f)$, we have that $f(x) = 0$,
+	therefore $f(x)f(y) = 0f(y) = 0 = f(xy)$,
+	so $xy \in \ker(f)$ and we see that $\ker(f)$
+	absorbs products in $A$.
+	Now, let $z \in \ker(f)$.
+	Since $f$ is a homomorphism, we have $f(x) - f(y) = 0 = f(x - y)$,
+	so $x - y \in \ker(f)$ and $\ker(f)$ is closed under subtraction.
+	Since $\ker(f)$ is closed under subtraction and absorbs products in $A$,
+	we conclude that $\ker(f)$ is an ideal of $A$,
+	or in other words,
+	we have that $(\forall x \in \ker(f), y \in A)(xy \in \ker(f))$.
+	This not only proves theorem \ref{thm10},
+	this in fact proves the last theorem that I will be submitting
+	for homework in this Abstract Abgebra class.
+	Thank you Professor Lee for a great summer semester.
+\end{proof}
+
+
+\end{document}
