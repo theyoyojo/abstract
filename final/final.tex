@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amsfonts, graphicx}
+
+\usepackage{euler}
+\title{Abstract Algebra: Final Exam}
+\author{Joel Savitz}
+\date{Thursday 6 August 2020}
+
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\gltwo}{GL_2(\reals)}
+\newcommand{\gltwoq}{GL_2(\rats)}
+\newcommand{\sltwo}{SL_2(\reals)}
+\newcommand{\glmatrix}[4]{\ensuremath{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}}
+\newcommand{\glxmatrix}[9]{\ensuremath{\begin{bmatrix} #1 & #2 & #3 \\
+#4 & #5 & #6 \\ #7 & #8 & #9 \end{bmatrix}}}
+\newcommand{\glinverse}[4]{\ensuremath{\frac{1}{#1 #4 - #2 #3}\glmatrix{#4}{-#2}{-#3}{#1}}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\freals}{\mathcal{F}(\reals)}
+\newcommand{\dreals}{\mathcal{D}(\reals)}
+\newcommand{\creals}{\mathcal{C}(\reals)}
+\newcommand{\powset}{\mathcal{P}}
+\newtheorem{thm}{Theorem}
+\newtheorem{cnt}{Counterexample}
+
+\begin{document}
+
+\maketitle
+
+\textbf{1. Elements and intersection of groups}
+
+Suppose $G = \{ g \in S_4: g(1) = 3 \}$ and $H = \{ h \in S_4: h(2) = 2 \}$.
+
+The following are the elements of $G$:
+
+\begin{align}
+	\binom{1\ 2\ 3\ 4}{3\ 1\ 2\ 4} &
+	\binom{1\ 2\ 3\ 4}{3\ 1\ 4\ 2} &
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 4\ 1} &
+	\binom{1\ 2\ 3\ 4}{3\ 4\ 1\ 2} &
+	\binom{1\ 2\ 3\ 4}{3\ 4\ 2\ 1}
+\end{align}
+
+The following are the elements of $H$:
+
+\begin{align}
+	\binom{1\ 2\ 3\ 4}{1\ 2\ 3\ 4} &
+	\binom{1\ 2\ 3\ 4}{1\ 2\ 4\ 3} &
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 4\ 1} &
+	\binom{1\ 2\ 3\ 4}{4\ 2\ 1\ 2} &
+	\binom{1\ 2\ 3\ 4}{4\ 2\ 2\ 1}
+\end{align}
+
+Then, the following are the elements of $G \cap H$
+
+\begin{align}
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} &
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 4\ 1}
+\end{align}
+
+We have: 
+\begin{align}
+	\binom{1\ 2\ 3\ 4}{3\ 2\ 1\ 4} \circ \binom{1\ 2\ 3\ 4}{3\ 2\ 4\ 1}
+	= \binom{1\ 2\ 3\ 4}{1\ 2\ 4\ 3} \not\in G \cap H
+\end{align}
+
+Since $G \cap H$ is not closed under function compsition,
+we have that $G \cap H$ is not a group.
+
+\textbf{2. Nonsingular rational matrices transformed by scalar multiples of the identity}
+
+Suppose $H = \{ X \in \gltwo: X = xI \in x \in \reals^*$ and $K = \gltwoq$.
+
+\begin{thm}
+	The set $HK = \{ XY: X \in H, Y \in K \}$ is a subgroup of $\gltwo$.
+\end{thm}
+
+\begin{proof}
+	Suppose $A,B \in HK$.
+	Since each element of $HK$ is some scalar mutliple of $I$
+	times some matrix with rational entries,
+	we can write $A = \glmatrix{xa}{xb}{xc}{xd}$ for some $x \in \reals^*$ and $a,b,c,d \in \rats$
+	as well as $B = \glmatrix{ye}{yf}{yg}{yh}$ for some $y \in \reals^*$ and $e,f,g,h \in \rats$.
+	Then, $AB = \glmatrix{xaye + xbyg}{xayf + xbyh}{xcye + xdyg}{xcyf + xdyh}$,
+	which is just $AB = xy\glmatrix{1}{0}{0}{1}\glmatrix{ae + bg}{af + bh}{ce + dg}{cf + dh}$,
+	and since this is none other than a scalar multiple of the identity matrix
+	multiplied by a matrix with rational entries, we have that $AB \in HK$,
+	and $HK$ is closed under multiplication.
+	Since both $0$ and $1$ are rational, we have
+	$\glmatrix{1}{0}{0}{1} =  \glmatrix{1}{0}{0}{1}\glmatrix{1}{0}{0}{1} \in HK$,
+	so the identity of $\gltwo$ is in $HK$.
+	Then, we can invert $A$ since $\det(\glmatrix{x}{0}{0}{x}) \neq 0$
+	and $\det(\glmatrix{a}{b}{c}{d} \neq 0$
+	by their respective definitions,
+	so by the properties of the determinant,
+	we must have that their matrix product
+	has nonzero determinent, i.e. $\det(A) \neq 0$,
+	therefore $A$ is invertible and it's inverse
+	is $A^{-1} = \frac{1}{x(ad - bd)} \glmatrix{xd}{-xb}{-xc}{xa}$,
+	and since this is the product of a scalar multiple of the identity matrix
+	and a matrix with rational entries, we have that $A^{-1} \in HK$,
+	therefore every element of $HK$ has its inverse in $HK$.
+	Finally, since $HK$ is closed under matrix multiplication,
+	since the identity of $\gltwo$, the identity matrix, is in $HK$,
+	and since every element of $HK$ has its inverse in $HK$,
+	we conclude that $HK$ is a subgroup of $\gltwo$.
+\end{proof}
+
+\textbf{3. Normal subgroups}
+
+Suppose $H$ and $K$ are normal subgroups of a group $G$,
+where $H \subseteq K$.
+
+\begin{thm}
+	If $G/H$ is an Abelian group, then $G/K$ is an abelian group.
+\end{thm}
+
+\begin{proof}
+	Suppose $Ha, Hb \in G/H$.
+	Then, since $G/H$ is Abelian,
+	we have $HaHb = HbHa$,
+	thus $H(ab) = H(ba)$ by definition.
+	Therefore we have some $h_1, h_2 \in H$
+	where we have $h_1ab = h_2ba$,
+	but since $H \subseteq K$,
+	we have just shown that for an arbitrary $h_1,h_2 \in K$,
+	it is also the case that $h_1ab = h_2ba$,
+	and this is exactly the definition
+	that $K(ab) = K(ba)$, i.e. $KaKb = KbKa$,
+	and this demonstrates that $G/K$ is an abelian group.
+\end{proof}
+
+\textbf{4. The non-field $\reals^2$}.
+
+Consider $\reals^2$.
+
+A field has no divisors of zero.
+
+That is, if there exists some $a,b \in F$ where $F$ is some set
+with a well-defined multiplication operation
+such that $ab = 0 \in F$ and $a \neq 0 \land b \neq 0$,
+then $F$ is not a field.
+
+The zero element of $\reals^2$ is $(0,0)$
+
+We have that $(1,0) \neq (0,0) \land (0,1) \neq (0,0)$,
+however it is indeed the case that $(1,0)(0,1) = (1\cdot 0, 0 \cdot 1) = (0,0)$,
+therefore $\reals^2$ has divisors of zero and so we conclude it is not a field.
+
+\end{document}
